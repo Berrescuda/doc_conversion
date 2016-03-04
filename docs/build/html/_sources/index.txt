@@ -1,7 +1,9 @@
 ================================
 OpenDCRE Documentation Main Page
 ================================
-This is a new branch!
+This is an even newer branch!
+
+V1.2.0
 
 Vapor IO Software and Hardware documentation, reference and downloads.
 
