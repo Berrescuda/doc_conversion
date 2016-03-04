@@ -32,7 +32,7 @@
   
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
         <link rel="up" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
-        <link rel="next" title="Configuring OpenDCRE" href="configure.html"/>
+        <link rel="next" title="API Reference" href="api.html"/>
         <link rel="prev" title="OpenDCRE Emulator" href="emulator.html"/> 
 
   
@@ -83,16 +83,16 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">IPMI Bridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">IPMI Bridge</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
@@ -145,6 +145,77 @@
             
   <div class="section" id="ipmi-bridge">
 <h1>IPMI Bridge<a class="headerlink" href="#ipmi-bridge" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>The Vapor IPMI bridge allows users of OpenDCRE to use both bus-bar-based power line communications, and LAN-based IPMI communications for equipment monitoring and management. The IPMI bridge is included with OpenDCRE v1.1.0 and later, and supports power control and status via IPMI using the OpenDCRE REST API.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">OpenMistOS must be connected to a wired LAN network that can reach all BMCs configured to be managed over OpenDCRE.</p>
+</li>
+<li><p class="first">Knowledge of BMC IP addresses, authentication types and usernames and passwords (where applicable) required.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Authentication Types supported:</dt>
+<dd><ul class="first last simple">
+<li>NONE (no username or password, not recommended)</li>
+<li>PASSWORD (username and password, sent in clear text, not recommended)</li>
+<li>MD2</li>
+<li>MD5</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The Vapor IPMI bridge is configured via the <code class="docutils literal"><span class="pre">bmc_config.json</span></code> file, located in the top level of the OpenDCRE distribution.  An example file, <code class="docutils literal"><span class="pre">bmc_config_sample.json</span></code> is included with OpenDCRE, and may be modified to one&#8217;s environment.</p>
+<p>All IPMI BMCs successfully configured will show up on a <code class="docutils literal"><span class="pre">scan</span></code> command result as devices under <code class="docutils literal"><span class="pre">board_id</span></code> 40000000.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;bmcs&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;bmc_device_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;bmc_ip&quot;</span><span class="p">:</span> <span class="s2">&quot;192.168.1.118&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;auth_type&quot;</span><span class="p">:</span> <span class="s2">&quot;MD5&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;asset_info&quot;</span><span class="p">:</span> <span class="s2">&quot;example BMC info&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For each BMC supported, an entry is added to the <code class="docutils literal"><span class="pre">bmcs</span></code> list above.  Each entry must include:</p>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">bmc_device_id</span></code> - a numeric value corresponding to the <code class="docutils literal"><span class="pre">device_id</span></code>, must be unique.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">bmc_ip</span></code> - the IP address (as a string) corresponding to the BMC to be managed.  IP address must be reachable by OpenMistOS.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">username</span></code> - the username to use in connecting to the BMC - may be an empty string if no username is used.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">password</span></code> - the password to use in connecting to the BMC - may be an empty string if no username is used.</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">auth_type</span></code> - the type of authentication to use in connecting to the BMC, supported values:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">NONE</span></code></li>
+<li><code class="docutils literal"><span class="pre">PASSWORD</span></code></li>
+<li><code class="docutils literal"><span class="pre">MD2</span></code></li>
+<li><code class="docutils literal"><span class="pre">MD5</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">asset_info</span></code> - a string (up to 127 bytes) containing asset information about the given BMC/server, returned via the read-info command for the device.</p>
+</li>
+</ul>
+<p>Once the configuration file has been successfully edited, rebuild the OpenDCRE Docker container, and verify the configured BMC devices are returned via a <code class="docutils literal"><span class="pre">scan</span></code> command under board 40000000.</p>
+<p>BMC devices will show up as <code class="docutils literal"><span class="pre">power</span></code> devices, and all <code class="docutils literal"><span class="pre">power</span></code> commands (<code class="docutils literal"><span class="pre">on</span></code>, <code class="docutils literal"><span class="pre">off</span></code>, <code class="docutils literal"><span class="pre">cycle</span></code>, <code class="docutils literal"><span class="pre">status</span></code>) are supported.</p>
+<p>Reading asset information about a given BMC can be carried out via the <code class="docutils literal"><span class="pre">read</span></code> command for the info field for the given BMC device.  BMC <code class="docutils literal"><span class="pre">asset_info</span></code> is readable via the OpenDCRE endpoint, but is not writeable via the endpoint.</p>
+<p>If the configuration file contains errors or is missing, no devices will show up under the IPMI <code class="docutils literal"><span class="pre">board_id</span></code> on a <code class="docutils literal"><span class="pre">scan</span></code> command.</p>
+</div>
 </div>
 
 
@@ -154,7 +225,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="configure.html" class="btn btn-neutral float-right" title="Configuring OpenDCRE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="emulator.html" class="btn btn-neutral" title="OpenDCRE Emulator" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

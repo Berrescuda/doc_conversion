@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Building OpenDCRE Docker Container &mdash; doc_test 0 documentation</title>
+  <title>Running and Testing OpenDCRE &mdash; doc_test 0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
         <link rel="up" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
         <link rel="next" title="Updating OpenDCRE" href="update.html"/>
-        <link rel="prev" title="Running and Testing OpenDCRE" href="run.html"/> 
+        <link rel="prev" title="Configuring OpendDCRE &amp; OpenMistOS" href="configure.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,14 +83,18 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Building OpenDCRE Docker Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpendDCRE &amp; OpenMistOS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Running and Testing OpenDCRE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#with-hat">With HAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#with-emulator">With Emulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-tests">Run Tests</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
 </ul>
@@ -129,7 +133,7 @@
       
           <li><a href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a> &raquo;</li>
       
-    <li>Building OpenDCRE Docker Container</li>
+    <li>Running and Testing OpenDCRE</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -143,8 +147,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="building-opendcre-docker-container">
-<h1>Building OpenDCRE Docker Container<a class="headerlink" href="#building-opendcre-docker-container" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="running-and-testing-opendcre">
+<h1>Running and Testing OpenDCRE<a class="headerlink" href="#running-and-testing-opendcre" title="Permalink to this headline">¶</a></h1>
+<p>Normally, OpenDCRE may be started and stopped via its built-in OpenMistOS init.d script (<code class="docutils literal"><span class="pre">/etc/init.d/opendcre</span> <span class="pre">{start|stop|restart}</span></code>).</p>
+<p>When starting OpenDCRE manually, the following steps may be followed.</p>
+<ul class="simple">
+<li>First, OpenDCRE expects a volume to be exposed for logs (<code class="docutils literal"><span class="pre">/logs</span></code> is the location within the container, which should be mapped externally).</li>
+<li>Additionally, OpenDCRE, by default, uses TCP port 5000 to listen for API requests.</li>
+<li>In cases where the OpenDCRE HAT is used with the OpenDCRE container, the /dev/ttyAMA0 serial device is also required.</li>
+</ul>
+<div class="section" id="with-hat">
+<h2>With HAT<a class="headerlink" href="#with-hat" title="Permalink to this headline">¶</a></h2>
+<p>To start OpenDCRE with the HAT device attached:</p>
+<p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">-v</span> <span class="pre">/var/log/opendcre:/logs</span> <span class="pre">--device</span> <span class="pre">/dev/ttyAMA0:/dev/ttyAMA0</span> <span class="pre">opendcre</span> <span class="pre">./start_opendcre.sh</span></code></p>
+</div>
+<div class="section" id="with-emulator">
+<h2>With Emulator<a class="headerlink" href="#with-emulator" title="Permalink to this headline">¶</a></h2>
+<p>To start OpenDCRE in emulator mode:</p>
+<p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">-v</span> <span class="pre">/var/log/opendcre:/logs</span> <span class="pre">opendcre</span> <span class="pre">./start_opendcre_emulator.sh</span></code></p>
+</div>
+<div class="section" id="run-tests">
+<h2>Run Tests<a class="headerlink" href="#run-tests" title="Permalink to this headline">¶</a></h2>
+<p>To run the OpenDCRE test suite:</p>
+<p><code class="docutils literal"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-ti</span> <span class="pre">-v</span> <span class="pre">/var/log/opendcre:/logs</span> <span class="pre">opendcre</span> <span class="pre">./opendcre_southbound/bus-test.py</span></code></p>
+</div>
 </div>
 
 
@@ -157,7 +183,7 @@
         <a href="update.html" class="btn btn-neutral float-right" title="Updating OpenDCRE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="run.html" class="btn btn-neutral" title="Running and Testing OpenDCRE" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="configure.html" class="btn btn-neutral" title="Configuring OpendDCRE &amp; OpenMistOS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -82,10 +82,87 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scan">Scan</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-format">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-example">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#response-schema">Response Schema</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a">a</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-response">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#version">Version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#read-device">Read Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#read-asset-info">Read Asset Info</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#write-asset-info">Write Asset Info</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#write-device">Write Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#power">Power</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Request Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Example Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test">Test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Request Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">Response Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">OpenDCRE / OpenMistOS Release Notes</a></li>
 </ul>
 
@@ -133,6 +210,749 @@
             
   <div class="section" id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>The examples below assume OpenDCRE is running on a given &lt;ipaddress&gt; and &lt;port&gt;.  The default port for OpenDCRE is TCP port 5000.  Currently, all commands are GET requests; a future version will expose these commands via POST as well.</p>
+<div class="section" id="scan">
+<h2>Scan<a class="headerlink" href="#scan" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The <code class="docutils literal"><span class="pre">scan</span></code> command polls boards and devices attached to the board.  The <code class="docutils literal"><span class="pre">scan</span></code> command takes a <code class="docutils literal"><span class="pre">board_id</span></code> as its argument, and returns an array of board and device descriptors. If no <code class="docutils literal"><span class="pre">board_id</span></code> is provided, the <code class="docutils literal"><span class="pre">scan</span></code> command scans all boards on the device bus.</li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>It is likely a good idea for applications to scan for all boards on startup, to ensure a proper map of boards and devices is available to the application.  Mismatches of board and device types and identifiers will result in 500 errors being returned for various commands that rely on these values mapping to actual hardware.</li>
+</ul>
+</div>
+<div class="section" id="request-format">
+<h3>Request Format<a class="headerlink" href="#request-format" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Scan devices on a specific <code class="docutils literal"><span class="pre">board_id</span></code>: <code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/scan/&lt;board_id&gt;</span></code></li>
+<li>Scan all boards on the device bus: <code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/scan</span></code></li>
+</ul>
+</div>
+<div class="section" id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">board_id</span></code> (optional) : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.</li>
+</ul>
+</div>
+<div class="section" id="request-example">
+<h3>Request Example<a class="headerlink" href="#request-example" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><cite>http://opendcre:5000/opendcre/1.1/scan</cite></li>
+</ul>
+</div>
+<div class="section" id="response-schema">
+<h3>Response Schema<a class="headerlink" href="#response-schema" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="a">
+<h4>a<a class="headerlink" href="#a" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-boards-devices">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-boards-devices</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Boards and Devices&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;boards&#8221;: {</dt>
+<dd><p class="first">&#8220;type&#8221;: &#8220;array&#8221;,
+&#8220;items&#8221;: {</p>
+<blockquote>
+<div><p>&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;board_index&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;devices&#8221;: {</p>
+<blockquote>
+<div><p>&#8220;type&#8221;: &#8220;array&#8221;,
+&#8220;items&#8221;: {</p>
+<blockquote>
+<div><p>&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;device_id&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;device_type&#8221;: {</p>
+<blockquote>
+<div><p>&#8220;type&#8221;: &#8220;string&#8221;,
+&#8220;enum&#8221;: [</p>
+<blockquote>
+<div>&#8220;temperature&#8221;,
+&#8220;thermistor&#8221;,
+&#8220;humidity&#8221;,
+&#8220;led&#8221;,
+&#8220;ipmb&#8221;,
+&#8220;power&#8221;,
+&#8220;door_lock&#8221;,
+&#8220;current&#8221;,
+&#8220;pressure&#8221;,
+&#8220;mone&#8221;</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="example-response">
+<h3>Example Response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><dl class="first docutils">
+<dt>&#8220;boards&#8221;: [</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;board_id&#8221;: &#8220;00000001&#8221;,
+&#8220;devices&#8221;: [</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd>&#8220;device_id&#8221;: &#8220;01ff&#8221;,
+&#8220;device_type&#8221;: &#8220;thermistor&#8221;</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div>&#8220;device_id&#8221;: &#8220;02ff&#8221;,
+&#8220;device_type&#8221;: &#8220;none&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">]</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;board_id&#8221;: &#8220;00000002&#8221;,
+&#8220;devices&#8221;: [</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd>&#8220;device_id&#8221;: &#8220;01ff&#8221;,
+&#8220;sensor_type&#8221;: &#8220;thermistor&#8221;</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div>&#8220;device_id&#8221;: &#8220;02ff&#8221;,
+&#8220;device_type&#8221;: &#8220;none&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">]</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="errors">
+<h3>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Returns error (500) if scan command fails, or if <code class="docutils literal"><span class="pre">board_id</span></code> corresponds to an invalid <code class="docutils literal"><span class="pre">board_id</span></code>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Return version information about a given board given its <code class="docutils literal"><span class="pre">board_id</span></code>.</p>
+</div>
+<div class="section" id="id2">
+<h3>Request Format<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/version/&lt;board_id&gt;</span></code></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">board_id</span></code> : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.</p>
+</div>
+<div class="section" id="id4">
+<h3>Request Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><a class="reference external" href="https://opendcre:5000/opendcre/1.0/version/00000001">https://opendcre:5000/opendcre/1.0/version/00000001</a></dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h3>Response Schema<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-version">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-version</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Board Version&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;api_version&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;firmware_version&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;opendcre_version&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id6">
+<h3>Example Response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;api_version&#8221;: &#8220;1.1&#8221;,
+&#8220;firmware_version&#8221;: &#8220;OpenDCRE Emulator v1.1.0&#8221;,
+&#8220;opendcre_version&#8221;: &#8220;1.1.0&#8221;</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id7">
+<h3>Errors<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Returns error (500) if version retrieval does not work or if <code class="docutils literal"><span class="pre">board_id</span></code> specifies a nonexistent board.</p>
+</div>
+</div>
+<div class="section" id="read-device">
+<h2>Read Device<a class="headerlink" href="#read-device" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>Description<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Read a value from the given <code class="docutils literal"><span class="pre">board_id</span></code> and <code class="docutils literal"><span class="pre">device_id</span></code> for a specific <code class="docutils literal"><span class="pre">device_type</span></code>.  The specified <code class="docutils literal"><span class="pre">device_type</span></code> must match the actual physical device type (as reported by the <code class="docutils literal"><span class="pre">scan</span></code> command), and is used to return a translated raw reading value (e.g. temperature in C for a thermistor) based on the existing algorithm for a given sensor type.  The raw value is also returned.</li>
+</ul>
+<p>Request Format
+- <code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/read/&lt;device_type&gt;/&lt;board_id&gt;/&lt;device_id&gt;</span></code></p>
+</div>
+<div class="section" id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">device_type</span></code>:  String value (lower-case) indicating what type of device to read:</dt>
+<dd><ul class="first last simple">
+<li>thermistor</li>
+<li>temperature  (not implemented yet)</li>
+<li>current (not implemented yet)</li>
+<li>humidity (not implemented yet)</li>
+<li>led (not implemented yet)</li>
+<li>ipmb (not implemented yet)</li>
+<li>door_lock (not implemented yet)</li>
+<li>pressure (not implemented yet)</li>
+<li>none (&lt;u&gt;Note&lt;/u&gt;:  reading a &#8220;none&#8221; device will result in a 500 error).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">board_id</span></code> : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">device_id</span></code> : The device to read on the specified board.  Hexadecimal string representation of a 2-byte integer value - range 0000..FFFF.  Must be a valid, existing device, where the <code class="docutils literal"><span class="pre">device_type</span></code> known to  OpenDCRE matches the <code class="docutils literal"><span class="pre">device_type</span></code> specified in the command for the given device - else, a 500 error is returned.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h3>Request Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://opendcre:5000/opendcre/1.1/read/thermistor/00000001/01FF</span></code></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Response Schema<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-thermistor-reading">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-thermistor-reading</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Thermistor Reading&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;sensor_raw&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;number&#8221;</dd>
+</dl>
+<p>},
+&#8220;temperature_c&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;number&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id12">
+<h3>Example Response<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;sensor_raw&#8221;: 755,
+&#8220;temperature_c&#8221;: 19.73</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id13">
+<h3>Errors<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If a sensor is not readable or does not exist, an error (500) is returned.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="read-asset-info">
+<h2>Read Asset Info<a class="headerlink" href="#read-asset-info" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>Description<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Read asset information from the given <code class="docutils literal"><span class="pre">board_id</span></code> and <code class="docutils literal"><span class="pre">device_id</span></code> for a specific <code class="docutils literal"><span class="pre">device_type</span></code>.  The specified <code class="docutils literal"><span class="pre">device_type</span></code> must match the actual physical device type (as reported by the <code class="docutils literal"><span class="pre">scan</span></code> command), and is used to return asset information (e.g. IP address, MAC address, Asset Tag, etc.) about a given device.  Only devices of <code class="docutils literal"><span class="pre">device_type</span></code> of <code class="docutils literal"><span class="pre">power</span></code> support retrieval of asset information; IPMI <code class="docutils literal"><span class="pre">power</span></code> devices support read of asset information, but do not support write of asset information.</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>Request Format<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/read/&lt;device_type&gt;/&lt;board_id&gt;/&lt;device_id&gt;/info</span></code></li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h3>Parameters<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">device_type</span></code>:  String value (lower-case) indicating what type of device to read:</dt>
+<dd><ul class="first last simple">
+<li>power (&lt;u&gt;Note&lt;/u&gt;:  all other device types unsupported in this version of OpenDCRE).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">board_id</span></code> : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.  IPMI BMC asset information is readable, but not writeable.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">device_id</span></code> : The device to read asset information for on the specified board.  Hexadecimal string representation of a 2-byte integer value - range 0000..FFFF.  Must be a valid, existing device, where the <code class="docutils literal"><span class="pre">device_type</span></code> known to OpenDCRE matches the <code class="docutils literal"><span class="pre">device_type</span></code> specified in the command for the given device - else, a 500 error is returned.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h3>Request Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://opendcre:5000/opendcre/1.1/read/power/00000001/01FF/info</span></code></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3>Response Schema<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt><a href="#id19"><span class="problematic" id="id20">``</span></a>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Asset Info Reading&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;board_id&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;device_id: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;asset_info: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>}``</p>
+</div></blockquote>
+<p>Alternately, for IPMI devices:
+::
+{</p>
+<blockquote>
+<div><blockquote>
+<div><p>&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Asset Info Reading&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;board_id&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;device_id: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;asset_info: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;bmc_ip: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+</div>
+<div class="section" id="id21">
+<h3>Example Response<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;board_id&#8221;: &#8220;00000001&#8221;,
+&#8220;device_id&#8221;: &#8220;01FF&#8221;,
+&#8220;asset_info&#8221;: &#8220;example asset information&#8221;</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>Alternately, for IPMI devices:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;board_id&quot;</span><span class="p">:</span> <span class="s2">&quot;00000001&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;01FF&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;asset_info&quot;</span><span class="p">:</span> <span class="s2">&quot;example IPMI asset information&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;bmc_ip&quot;</span><span class="p">:</span> <span class="s2">&quot;123.124.10.100&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Errors<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>f asset info is not readable or does not exist, an error (500) is returned.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="write-asset-info">
+<h2>Write Asset Info<a class="headerlink" href="#write-asset-info" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h3>Description<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Write asset information from the given <code class="docutils literal"><span class="pre">board_id</span></code> and <code class="docutils literal"><span class="pre">device_id</span></code> for a specific <code class="docutils literal"><span class="pre">device_type</span></code>.  The specified <code class="docutils literal"><span class="pre">device_type</span></code> must match the actual physical device type (as reported by the <code class="docutils literal"><span class="pre">scan</span></code> command), and is used to set asset information (e.g. IP address, MAC address, Asset Tag, etc.) for a given device.  Only devices of <code class="docutils literal"><span class="pre">device_type</span></code> of <code class="docutils literal"><span class="pre">power</span></code> support set and retrieval of asset information; IPMI <code class="docutils literal"><span class="pre">power</span></code> devices support read of asset information, but do not support write of asset information.  Attempting to write asset information for an IPMI device will result in a 500 error.</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h3>Request Format<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/write/&lt;device_type&gt;/&lt;board_id&gt;/&lt;device_id&gt;/info/&lt;value&gt;</span></code></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h3>Parameters<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">device_type</span></code>:  String value (lower-case) indicating what type of device to write asset info for:</dt>
+<dd><ul class="first last simple">
+<li>power (&lt;u&gt;Note&lt;/u&gt;:  all other device types unsupported in this version of OpenDCRE).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">board_id</span></code> : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.  IPMI BMC asset information is readable, but not writeable.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">device_id</span></code> : The device to read asset information for on the specified board.  Hexadecimal string representation of a 2-byte integer value - range 0000..FFFF.  Must be a valid, existing device, where the <code class="docutils literal"><span class="pre">device_type</span></code> known to OpenDCRE matches the <code class="docutils literal"><span class="pre">device_type</span></code> specified in the command for the given device - else, a 500 error is returned.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">value</span></code> : The string value to set for asset information for the given device.  Max length of this string value is 127 bytes.  Overwrites any value previously stored in the <code class="docutils literal"><span class="pre">asset_info</span></code> field.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h3>Request Example<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://opendcre:5000/opendcre/1.1/write/power/00000001/01FF/info/192.100.10.1</span></code></li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h3>Response Schema<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-response">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-response</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Asset Info Response&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;board_id&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>},
+&#8220;device_id: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;asset_info: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id28">
+<h3>Example Response<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;board_id&#8221;: &#8220;00000001&#8221;,
+&#8220;device_id&#8221;: &#8220;01FF&#8221;,
+&#8220;asset_info&#8221;: &#8220;example asset information&#8221;</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id29">
+<h3>Errors<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If asset info is not writeable or does not exist, an error (500) is returned.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="write-device">
+<h2>Write Device<a class="headerlink" href="#write-device" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id30">
+<h3>Description<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Write to device bus to a writeable device.  The write command is followed by the <code class="docutils literal"><span class="pre">device_type</span></code>, <code class="docutils literal"><span class="pre">board_id</span></code> and <code class="docutils literal"><span class="pre">device_id</span></code>, with the final field of the request being the data sent to the device.</li>
+</ul>
+</div>
+<div class="section" id="status">
+<h3>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Not yet implemented.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="power">
+<h2>Power<a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id31">
+<h3>Description<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Control device power, and/or retrieve its power supply status.</li>
+</ul>
+</div>
+<div class="section" id="id32">
+<h3>Request Format<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/power/&lt;command&gt;/&lt;board_id&gt;/&lt;device_id&gt;</span></code></li>
+</ul>
+</div>
+<div class="section" id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">board_id</span></code> : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of <code class="docutils literal"><span class="pre">board_id</span></code> are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special <code class="docutils literal"><span class="pre">board_id</span></code> of 40000000.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">device_id</span></code> : The device to issue power command to on the specified board.  Hexadecimal string representation of 2-byte integer value - range 0000..FFFF.  Must be a valid, existing device, where the <code class="docutils literal"><span class="pre">device_type</span></code> known to the OpenDCRE HAT is <code class="docutils literal"><span class="pre">power</span></code> - else, a 500 error is returned.</p>
+</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">command</span></code> :</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">on</span></code> : Turn power on to specified device.</li>
+<li><code class="docutils literal"><span class="pre">off</span></code> : Turn power off to specified device.</li>
+<li><code class="docutils literal"><span class="pre">cycle</span></code> : Power-cycle the specified device.</li>
+<li><code class="docutils literal"><span class="pre">status</span></code> : Get power status for the specified device.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For all commands, power status is returned as the command&#8217;s response.</p>
+</div>
+<div class="section" id="id34">
+<h3>Request Example<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://opendcre:5000/opendcre/1.1/power/on/00000001/01ff</span></code></li>
+</ul>
+</div>
+<div class="section" id="id35">
+<h3>Response Schema<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-power-status">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-power-status</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Power Status&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;input_power&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;number&#8221;</dd>
+</dl>
+<p>},
+&#8220;input_voltage&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;number&#8221;</div></blockquote>
+<p>},
+&#8220;output_current&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;number&#8221;</div></blockquote>
+<p>},
+&#8220;over_current&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;boolean&#8221;</div></blockquote>
+<p>},
+&#8220;pmbus_raw&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;power_ok&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;boolean&#8221;</div></blockquote>
+<p>},
+&#8220;power_status&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;string&#8221;</div></blockquote>
+<p>},
+&#8220;under_voltage&#8221;: {</p>
+<blockquote>
+<div>&#8220;type&#8221;: &#8220;boolean&#8221;</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id36">
+<h3>Example Response<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd>&#8220;input_power&#8221;: 0.0,
+&#8220;input_voltage&#8221;: 0.0,
+&#8220;output_current&#8221;: -25.70631970260223,
+&#8220;over_current&#8221;: false,
+&#8220;pmbus_raw&#8221;: &#8220;0,0,0,0&#8221;,
+&#8220;power_ok&#8221;: true,
+&#8220;power_status&#8221;: &#8220;on&#8221;,
+&#8220;under_voltage&#8221;: false</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id37">
+<h3>Errors<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If a power action fails, or an invalid board/device combination are specified, an error (500) is returned.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id38">
+<h3>Description<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The test command may be used to verify that the OpenDCRE endpoint is up and running, but without attempting to address the device bus.  The command takes no arguments, and if successful, returns a simple status message of &#8220;ok&#8221;.</li>
+</ul>
+</div>
+<div class="section" id="id39">
+<h3>Request Format<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">http://&lt;ipaddress&gt;:&lt;port&gt;/opendcre/&lt;version&gt;/test</span></code></li>
+</ul>
+</div>
+<div class="section" id="id40">
+<h3>Response Schema<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>{</dt>
+<dd><p class="first">&#8220;$schema&#8221;: &#8220;<a class="reference external" href="http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-test-status">http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-test-status</a>&#8221;,
+&#8220;title&#8221;: &#8220;OpenDCRE Test Status&#8221;,
+&#8220;type&#8221;: &#8220;object&#8221;,
+&#8220;properties&#8221;: {</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;status&#8221;: {</dt>
+<dd>&#8220;type&#8221;: &#8220;string&#8221;</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>Example Response</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id41">
+<h3>Errors<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<p>-If the endpoint is not running no response will be returned, as the command will always return the response above while the endpoint is functional.</p>
+</div>
+</div>
 </div>
 
 

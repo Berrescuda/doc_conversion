@@ -32,7 +32,7 @@
   
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
         <link rel="next" title="OpenDCRE Emulator" href="emulator.html"/>
-        <link rel="prev" title="Download and Install" href="download.html"/> 
+        <link rel="prev" title="Getting OpenDCRE &amp; OpenMistOS" href="gettingopendcre.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,14 +82,13 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Configuring OpenDCRE &amp; OpenMistOS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Building OpenDCRE Docker Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpendDCRE &amp; OpenMistOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
 </ul>
@@ -144,13 +143,47 @@
 <h1>Configuring OpenDCRE &amp; OpenMistOS<a class="headerlink" href="#configuring-opendcre-openmistos" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dockerbuild.html">Building OpenDCRE Docker Container</a></li>
-<li class="toctree-l1"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#emulator-configuration">Emulator Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#boards">Boards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#device-types">Device Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#read">Read</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#power">Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#other-notes">Other Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emulator.html#hardware">Hardware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI Bridge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipmi.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipmi.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">Configuring OpendDCRE &amp; OpenMistOS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#customization">Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#port">Port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#tls-ssl">TLS/SSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html#with-hat">With HAT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html#with-emulator">With Emulator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html#run-tests">Run Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">Updating OpenDCRE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="update.html#opendcre-updates">OpenDCRE Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html#openmistos-updates">OpenMistOS Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demoui.html">Demo UI Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="demoui.html#getting-the-demo">Getting the Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demoui.html#configuring-the-demo">Configuring the Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demoui.html#running-the-demo">Running the Demo</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -165,7 +198,7 @@
         <a href="emulator.html" class="btn btn-neutral float-right" title="OpenDCRE Emulator" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="download.html" class="btn btn-neutral" title="Download and Install" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gettingopendcre.html" class="btn btn-neutral" title="Getting OpenDCRE &amp; OpenMistOS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

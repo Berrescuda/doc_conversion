@@ -83,16 +83,20 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpendDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Demo UI Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Demo UI Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getting-the-demo">Getting the Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-demo">Configuring the Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-demo">Running the Demo</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
@@ -145,6 +149,69 @@
             
   <div class="section" id="demo-ui-configuration">
 <h1>Demo UI Configuration<a class="headerlink" href="#demo-ui-configuration" title="Permalink to this headline">¶</a></h1>
+<p>A lightweight OpenDCRE demo is included with the OpenMistOS image and can be run as a docker container (along with the OpenDCRE container). By default, the demo is accessible on port 80 of the Pi running OpenMistOS. If desired, the demo container can be set to run on startup along with the OpenDCRE container.</p>
+<div class="section" id="getting-the-demo">
+<h2>Getting the Demo<a class="headerlink" href="#getting-the-demo" title="Permalink to this headline">¶</a></h2>
+<p>The demo site can be downloaded as a standalone image from [<a class="reference external" href="https://hub.docker.com/r/vaporio/opendcre-demo/">https://hub.docker.com/r/vaporio/opendcre-demo/</a> DockerHub], or the demo source can be download from [<a class="reference external" href="https://github.com/vapor-ware/opendcre-demo">https://github.com/vapor-ware/opendcre-demo</a> GitHub].</p>
+<p>From DockerHub:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>docker pull vaporio/opendcre-demo
+</pre></div>
+</div>
+<p>From GitHub:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>git clone https://github.com/vapor-ware/opendcre-demo
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuring-the-demo">
+<h2>Configuring the Demo<a class="headerlink" href="#configuring-the-demo" title="Permalink to this headline">¶</a></h2>
+<p>By default, the demo expects the base OpenDCRE endpoint to be at:</p>
+<p><a class="reference external" href="http://opendcre:5000">http://opendcre:5000</a></p>
+<p>In order to interact with the demo and successfully query against the OpenDCRE endpoint, you will need to add &#8216;opendcre&#8217; as a host in your <code class="docutils literal"><span class="pre">/etc/hosts</span></code> file. For example, if the Raspberry Pi running the OpenDCRE endpoint has IP address 192.168.1.100, you would add the following entry to <code class="docutils literal"><span class="pre">/etc/hosts</span></code>:</p>
+<p>``
+192.168.1.100      opendcre
+``</p>
+<p>The OpenDCRE endpoint url can be changed in the demo config file, if desired. The demo config file can be found in the demo source at:
+demo/assets/js/opendcre/opendcre.config.js</p>
+<p>Other configurable options provided in the opendcre.config.js file are summarized in the table below.</p>
+<p>{| class=&#8221;wikitable&#8221;
+! style=&#8221;text-align:center;&#8221; | Option
+!Default Value
+!Description
+<a href="#id1"><span class="problematic" id="id2">|</span></a>-
+<a href="#id3"><span class="problematic" id="id4">|</span></a><code class="docutils literal"><span class="pre">opendcre_base_url</span></code>
+<a href="#id5"><span class="problematic" id="id6">|</span></a><a class="reference external" href="http://opendcre:5000/opendcre/1.1/">http://opendcre:5000/opendcre/1.1/</a>
+<a href="#id7"><span class="problematic" id="id8">|</span></a>base url for endpoint queries
+<a href="#id9"><span class="problematic" id="id10">|</span></a>-
+<a href="#id11"><span class="problematic" id="id12">|</span></a><code class="docutils literal"><span class="pre">opendcre_thermistor_limit</span></code>
+<a href="#id13"><span class="problematic" id="id14">|</span></a>41
+<a href="#id15"><span class="problematic" id="id16">|</span></a>y-value at which red line is added to thermistor graphs to represent ‘max allowable value’ limit
+<a href="#id17"><span class="problematic" id="id18">|</span></a>-
+<a href="#id19"><span class="problematic" id="id20">|</span></a><code class="docutils literal"><span class="pre">chart_points</span></code>
+<a href="#id21"><span class="problematic" id="id22">|</span></a>25
+<a href="#id23"><span class="problematic" id="id24">|</span></a>maximum number of points to include in sensor graphs
+<a href="#id25"><span class="problematic" id="id26">|</span></a>-
+<a href="#id27"><span class="problematic" id="id28">|</span></a><code class="docutils literal"><span class="pre">thermistor_poll_interval</span></code>
+<a href="#id29"><span class="problematic" id="id30">|</span></a>750
+<a href="#id31"><span class="problematic" id="id32">|</span></a>time (in milliseconds) of the polling interval for thermistor reads
+<a href="#id33"><span class="problematic" id="id34">|</span></a>}</p>
+</div>
+<div class="section" id="running-the-demo">
+<h2>Running the Demo<a class="headerlink" href="#running-the-demo" title="Permalink to this headline">¶</a></h2>
+<p>If you’ve downloaded a standalone version of the demo from DockerHub, you can run a container instance of the image with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>docker run -d -p 80:80 -v /var/log/opendcre:/logs vaporio/opendcre-demo
+</pre></div>
+</div>
+<p>If you’ve downloaded a standalone version of the demo from GitHub, you need to build the image before a container can be run.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>docker build -f Dockerfile.rpi -t vaporio/opendcre-demo .
+</pre></div>
+</div>
+<p>then, a container instance can be run</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>docker run -d -p 80:80 -v /var/log/opendcre:/logs vaporio/opendcre-demo
+</pre></div>
+</div>
+<p>If running successfully, when you navigate to the correct demo url (the url of the Raspberry Pi running it, on port 80), the demo page should show up.</p>
+<p>To connect to the OpenDCRE endpoint: from the ‘Select a Rack’ drop-down menu at the top of the demo page, select ‘Rack #1’. If hooked up to the endpoint correctly, the sensors/boards/servers navigation list items should be populated. If the demo is not configured correctly or your <code class="docutils literal"><span class="pre">/etc/hosts</span></code> is not set up correctly, an alert should show up letting you know that you were unable to connect.</p>
+</div>
 </div>
 
 

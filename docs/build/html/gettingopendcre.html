@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
-        <link rel="next" title="Requirements" href="requirements.html"/>
-        <link rel="prev" title="OpenMistOS" href="openmistos.html"/> 
+        <link rel="next" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
+        <link rel="prev" title="OpenDCRE Introduction" href="introduction.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,10 +82,23 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting OpenDCRE &amp; OpenMistOS</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="requirements.html">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="download.html">Download and Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-install">Download and Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#login">Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#browser">Browser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#command-line">Command-Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logs">Logs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a></li>
@@ -137,11 +150,168 @@
             
   <div class="section" id="getting-opendcre-openmistos">
 <h1>Getting OpenDCRE &amp; OpenMistOS<a class="headerlink" href="#getting-opendcre-openmistos" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="download.html">Download and Install</a></li>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Raspberry Pi 2 Model B (other Raspberry Pi versions are not supported).</li>
+<li>4GB Micro SD card - 8GB or larger recommended.</li>
+<li>5V Micro USB power source.</li>
+<li>Wired ethernet connection (wireless supported but not recommended).</li>
+<li>OpenDCRE HAT (optional)</li>
+<li>DC Bus Bar for power line communications (optional)</li>
+<li>IPMI 1.5-compliant BMC for IPMI bridge (optional)</li>
+<li>HDMI/HDMI-VGA video cable &amp; monitor (optional)</li>
 </ul>
+</div>
+<div class="section" id="software-requirements">
+<h3>Software Requirements<a class="headerlink" href="#software-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>OpenMistOS v1.0.0 or later.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="download-and-install">
+<h2>Download and Install<a class="headerlink" href="#download-and-install" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="download">
+<h3>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>[<a class="reference external" href="http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz">http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz</a> Download OpenMistOS], and decompress the .img file.  [<a class="reference external" href="https://github.com/vapor-ware/OpenDCRE">https://github.com/vapor-ware/OpenDCRE</a> OpenDCRE Source] on GitHub.</li>
+</ul>
+</div>
+<div class="section" id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="first docutils">
+<dt>Insert Micro SD card into card reader, and determine the SD card device:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>MacOS</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">diskutil</span> <span class="pre">list</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>Linux</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">-l</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Use <code class="docutils literal"><span class="pre">dd</span></code> to write image to card:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>MacOS</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">if=&lt;.img</span> <span class="pre">file&gt;</span> <span class="pre">of=&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span> <span class="pre">bs=4m</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>Linux</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">if=&lt;.img</span> <span class="pre">file&gt;</span> <span class="pre">of=&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span> <span class="pre">bs=4M</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>Note</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">&lt;.img</span> <span class="pre">file&gt;</span></code> is the path and filename of the decompressed OpenMistOS .img downloaded above.</li>
+<li><code class="docutils literal"><span class="pre">&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span></code> is the SD card device determined in the previous step. (e.g. - /dev/disk1)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>When executing the above commands, if an error is returned similar to: <code class="docutils literal"><span class="pre">dd:</span> <span class="pre">&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;:</span> <span class="pre">Resource</span> <span class="pre">busy</span></code> then the SD card must be unmounted.To do this, identify the SD card partition (can use <code class="docutils literal"><span class="pre">df</span> <span class="pre">-h</span></code> for this, or the results from determining the SD card device, above), then unmount the partition:</p>
+<ul>
+<li><dl class="first docutils">
+<dt><em>MacOS</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">diskutil</span> <span class="pre">unmount</span> <span class="pre">&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>Linux</em>:</dt>
+<dd><ul class="first last simple">
+<li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">umount</span> <span class="pre">&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span></code></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>When <code class="docutils literal"><span class="pre">dd</span></code> is complete, OpenMistOS is ready to run from the SD card.  Plug the Raspberry Pi into the wired network, insert the Micro SD card, and power up the Raspberry Pi.</p>
+<p>At completion of the boot process, the OpenMistOS device IP address is displayed on screen (if video connection is used); alternately, check DHCP or router logs to determine the IP address of the OpenMistOS device.</p>
+</div>
+<div class="section" id="login">
+<h3>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
+<p>Ssh into the OpenMistOS device:</p>
+<ul class="simple">
+<li><em>Username</em>:  <code class="docutils literal"><span class="pre">openmistos</span></code></li>
+<li><em>Password</em>:  <code class="docutils literal"><span class="pre">0p3ndcr3!</span></code></li>
+</ul>
+<p>The openmistos user has sudo rights on OpenMistOS.  It is recommended to &lt;b&gt;immediately&lt;/b&gt; change the openmistos password to a new, secure, password.</p>
+<p>&lt;b&gt;Note&lt;/b&gt;: OpenMistOS, like other Raspberry Pi OSes, uses only the space required for the OS on the SD card. It is recommended to change this behavior so that the entire space on the SD card is used. To do this, enter the configuration menu on first login:</p>
+<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">raspi-config</span></code></p>
+<p>In the configuration menu, there should be an option to use the entire disk. Once selected and confirmed, OpenMistOS will restart and the entire SD card will then be used.</p>
+</div>
+<div class="section" id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Permalink to this headline">¶</a></h3>
+<p>There are several methods for verifying that OpenDCRE is running properly.</p>
+</div>
+<div class="section" id="browser">
+<h3>Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h3>
+<p>Navigate to:
+::
+<a class="reference external" href="http:/">http:/</a>/&lt;openmistos ip address&gt;:5000/opendcre/1.1/test</p>
+<p>Output should be similar to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="command-line">
+<h3>Command-Line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h3>
+<p>Running:</p>
+<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span></code></p>
+<p>produces output similar to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>CONTAINER ID        IMAGE                      COMMAND                CREATED          STATUS              PORTS                    NAMES
+a9419ff86502        vaporio/opendcre:latest    &quot;./start_opendcre.sh   4 days ago       Up 4 days           0.0.0.0:5000-&gt;5000/tcp   opendcre
+</pre></div>
+</div>
+<p>(when using the HAT)</p>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>CONTAINER ID        IMAGE                     COMMAND                CREATED             STATUS              PORTS                    NAMES
+2281101f6a60        vaporio/opendcre:latest   &quot;./start_opendcre_em   4 days ago          Up 4 days           0.0.0.0:5000-&gt;5000/tcp   opendcre
+</pre></div>
+</div>
+<p>(when using the emulator)</p>
+<p>The OpenDCRE service starts automatically at boot; it can be started/stopped via the init.d daemon:</p>
+<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">/etc/init.d/opendcre</span> <span class="pre">&lt;start|stop&gt;</span></code></p>
+</div>
+<div class="section" id="logs">
+<h3>Logs<a class="headerlink" href="#logs" title="Permalink to this headline">¶</a></h3>
+<p>By default, OpenDCRE logs are placed in /var/log/opendcre .  Access, error and daemon logs are available for troubleshooting and analytics.</p>
+</div>
 </div>
 </div>
 
@@ -152,10 +322,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="requirements.html" class="btn btn-neutral float-right" title="Requirements" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configuringopendcre.html" class="btn btn-neutral float-right" title="Configuring OpenDCRE &amp; OpenMistOS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="openmistos.html" class="btn btn-neutral" title="OpenMistOS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral" title="OpenDCRE Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

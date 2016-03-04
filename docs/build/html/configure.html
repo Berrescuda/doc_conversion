@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuring OpenDCRE &mdash; doc_test 0 documentation</title>
+  <title>Configuring OpendDCRE &amp; OpenMistOS &mdash; doc_test 0 documentation</title>
   
 
   
@@ -32,7 +32,7 @@
   
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
         <link rel="up" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
-        <link rel="next" title="Running and Testing OpenDCRE" href="run.html"/>
+        <link rel="next" title="Running and Testing OpenDCRE" href="dockerbuild.html"/>
         <link rel="prev" title="IPMI Bridge" href="ipmi.html"/> 
 
   
@@ -83,13 +83,18 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Configuring OpendDCRE &amp; OpenMistOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#customization">Customization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#port">Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tls-ssl">TLS/SSL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">Authentication</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
@@ -129,7 +134,7 @@
       
           <li><a href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a> &raquo;</li>
       
-    <li>Configuring OpenDCRE</li>
+    <li>Configuring OpendDCRE &amp; OpenMistOS</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -143,8 +148,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configuring-opendcre">
-<h1>Configuring OpenDCRE<a class="headerlink" href="#configuring-opendcre" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="configuring-openddcre-openmistos">
+<h1>Configuring OpendDCRE &amp; OpenMistOS<a class="headerlink" href="#configuring-openddcre-openmistos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>OpenDCRE may be customized in a variety of ways, most commonly by changing the HTTP endpoint port, adding TLS certificates for HTTPS support, or by integrating OpenDCRE with a site-specific authentication provider.</p>
+</div>
+<div class="section" id="port">
+<h2>Port<a class="headerlink" href="#port" title="Permalink to this headline">¶</a></h2>
+<p>To change the port OpenDCRE listens on, edit the <code class="docutils literal"><span class="pre">opendcre_nginx.conf</span></code> file, and rebuild the OpenDCRE docker container.  Be sure to also update the <code class="docutils literal"><span class="pre">DOCKER_RUN</span></code> variable in the  <code class="docutils literal"><span class="pre">/etc/init.d/opendcre</span></code> init.d script to indicate the correct port mapping for the Docker container, as well.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>server {</dt>
+<dd><p class="first">&#8216;&#8217;&#8216;listen       5000;&#8217;&#8216;&#8217;
+server_name     localhost;
+charset utf-8;
+access_log /logs/opendcre.net_access.log;
+error_log /logs/opendcre.net_error.log;</p>
+<dl class="docutils">
+<dt>location / {</dt>
+<dd>add_header &#8216;Access-Control-Allow-Origin&#8217; &#8216;*&#8217;;
+uwsgi_pass unix://var/uwsgi/opendcre.sock;
+include /etc/nginx/uwsgi_params;</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+</div>
+<div class="section" id="tls-ssl">
+<h2>TLS/SSL<a class="headerlink" href="#tls-ssl" title="Permalink to this headline">¶</a></h2>
+<p>TLS/SSL certificates may be added to OpenDCRE via Nginx configuration.  Refer to Nginx documentation for instructions on how to enable TLS.</p>
+</div>
+<div class="section" id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>As OpenDCRE uses Nginx as its reverse proxy, authentication may be enabled via Nginx configuration - see Nginx documentation for instructions on how to enable authentication.</p>
+</div>
 </div>
 
 
@@ -154,7 +194,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="run.html" class="btn btn-neutral float-right" title="Running and Testing OpenDCRE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dockerbuild.html" class="btn btn-neutral float-right" title="Running and Testing OpenDCRE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="ipmi.html" class="btn btn-neutral" title="IPMI Bridge" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

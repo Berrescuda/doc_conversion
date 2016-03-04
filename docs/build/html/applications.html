@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Applications &mdash; doc_test 0 documentation</title>
+  <title>OpenDCRE Introduction &mdash; doc_test 0 documentation</title>
   
 
   
@@ -86,7 +86,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="introduction.html">Introduction</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="features.html">Features</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architecture.html">Architecture</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">OpenDCRE Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openmistos">OpenMistOS</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="openmistos.html">OpenMistOS</a></li>
 </ul>
 </li>
@@ -126,7 +132,7 @@
       
           <li><a href="introduction.html">Introduction</a> &raquo;</li>
       
-    <li>Applications</li>
+    <li>OpenDCRE Introduction</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -140,9 +146,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="applications">
-<h1>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h1>
-<p>Applications</p>
+  <div class="section" id="opendcre-introduction">
+<h1>OpenDCRE Introduction<a class="headerlink" href="#opendcre-introduction" title="Permalink to this headline">¶</a></h1>
+<p>OpenDCRE provides a securable RESTful API for monitoring and control of data center and IT equipment, including reading sensors and server power control - via power line communications (PLC) over a DC bus bar, or via IPMI over LAN. The OpenDCRE API is easy to integrate into third-party monitoring, management and orchestration providers, while providing a simple, curl-able interface for common and custom devops tasks.</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Analog sensor support (Thermistor)</li>
+<li>Power control and status via power-line communications (PLC)</li>
+<li>IPMI Bridge - power control and status via IPMI</li>
+<li>Asset information for servers (<cite>power</cite> devices - PLC and IPMI)</li>
+<li>Simple curlable RESTful API</li>
+<li>Securable via TLS/SSL</li>
+<li>Integration with existing Auth providers (OAuth, LDAP, AD, etc.)</li>
+</ul>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>OpenDCRE is part of the OpenMistOS Linux distribution that runs on the Raspberry Pi 2 Model B.  OpenMistOS includes a custom Docker package, compiled for ARMv7 (armhf), and OpenDCRE is packaged as a Docker container.</p>
+<p>OpenDCRE exposes a RESTful API via an HTTP endpoint in the OpenDCRE container.  The HTTP endpoint is comprised of nginx as the front-end, with uwsgi as a reverse proxy for a Python Flask application.  Within Flask, OpenDCRE uses a text-based serial protocol to communicate with the OpenDCRE device bus, which is the primary communications channel between API users and the device bus.</p>
+<p>[[<a class="reference external" href="File:OpenDCRE_diagram01">File:OpenDCRE_diagram01</a>.png|center|450px]]</p>
+<p>The OpenDCRE device bus is comprised of a set of boards and devices, individually addressable, and globally scannable for a real-time inventory of addressable devices attached to the bus.  The OpenDCRE device bus allows devices to be read and written, and for various actions to be carried out, such as power control (on/off/cycle/status).  Additionally, when a physical OpenDCRE device bus is not present, a software emulator can be used to simulate OpenDCRE API commands and functionality.</p>
+<p>All included components of OpenDCRE can be customized, integrated and secured via configuration file (nginx, uwsgi), and output their logs to a common location (/var/log/opendcre).</p>
+</div>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<p>OpenMistOS and OpenDCRE can be used as an open platform for monitoring and managing data center hardware, software and environmental characteristics. Given the small form-factor of the Raspberry Pi plus its HAT board, there are a wide variety of possible applications, deployments, physical mounting strategies, and network connectivity options.  Community support helps OpenDCRE grow, and enables new functionality.</p>
+</div>
+<div class="section" id="openmistos">
+<h2>OpenMistOS<a class="headerlink" href="#openmistos" title="Permalink to this headline">¶</a></h2>
+<p>OpenMistOS (OMOS) is an open-source operating system distribution for the Raspberry Pi, featuring OpenDCRE, the Open Data Center Runtime Environment.  OMOS was developed for the purpose of using a small, single-board computer like the Raspberry Pi to perform data center sensorfication and control, particularly in concert with OpenCompute-based open hardware.</p>
+<p>OMOS is Debian (wheezy)-based, featuring Docker capabilities baked into the OS, with OpenDCRE running as a Dockerized service of the OS.  OpenMistOS was developed by a team with decades of experience in data centers large and small, and is working to take the pain out of proprietary and arcane technologies.</p>
+</div>
 </div>
 
 

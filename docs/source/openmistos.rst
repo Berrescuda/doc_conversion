@@ -1,5 +1,0 @@
-==========
-OpenMistOS
-==========
-
-OpenMistOS

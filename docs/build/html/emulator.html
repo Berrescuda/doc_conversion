@@ -32,7 +32,7 @@
   
     <link rel="top" title="doc_test 0 documentation" href="index.html"/>
         <link rel="up" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
-        <link rel="next" title="IPMI Bridge" href="ipmi.html"/>
+        <link rel="next" title="API Reference" href="api.html"/>
         <link rel="prev" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/> 
 
   
@@ -83,16 +83,20 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gettingopendcre.html">Getting OpenDCRE &amp; OpenMistOS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="configuringopendcre.html">Configuring OpenDCRE &amp; OpenMistOS</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">OpenDCRE Emulator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
-<li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="demoui.html">Demo UI Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">OpenDCRE Emulator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#emulator-configuration">Emulator Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boards">Boards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-types">Device Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#read">Read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power">Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-notes">Other Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware">Hardware</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
@@ -145,6 +149,351 @@
             
   <div class="section" id="opendcre-emulator">
 <h1>OpenDCRE Emulator<a class="headerlink" href="#opendcre-emulator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="emulator-configuration">
+<h2>Emulator Configuration<a class="headerlink" href="#emulator-configuration" title="Permalink to this headline">¶</a></h2>
+<p>In the absence of HAT hardware, OpenDCRE automatically switches to using a software emulator, to simulate various capabilities of OpenDCRE.  The OpenDCRE emulator is configured by means of a JSON file (the default file is <cite>simple.json</cite>) which is stored in the <cite>/opendcre/opendcre_southbound</cite> directory of the OpenDCRE Docker container.</p>
+<p>To modify the emulator output, users may clone the [<a class="reference external" href="https://github.com/vapor-ware/OpenDCRE">https://github.com/vapor-ware/OpenDCRE</a> OpenDCRE GitHub repository], and change the contents of <cite>simple.json</cite>, then rebuild the OpenDCRE container.</p>
+<p>Example emulator configuration from <cite>simple.json</cite> is below, followed by an explanation of the contents.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;boards&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;board_id&quot;</span><span class="p">:</span> <span class="s2">&quot;00000001&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;firmware_version&quot;</span> <span class="p">:</span> <span class="s2">&quot;OpenDCRE Emulator v1.1.0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;devices&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;01ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;thermistor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">656</span><span class="p">,</span>
+                <span class="mi">646</span><span class="p">,</span>
+                <span class="mi">636</span><span class="p">,</span>
+                <span class="mi">625</span><span class="p">,</span>
+                <span class="mi">615</span><span class="p">,</span>
+                <span class="mi">605</span><span class="p">,</span>
+                <span class="mi">594</span><span class="p">,</span>
+                <span class="mi">584</span><span class="p">,</span>
+                <span class="mi">573</span><span class="p">,</span>
+                <span class="mi">563</span><span class="p">,</span>
+                <span class="mi">553</span><span class="p">,</span>
+                <span class="mi">542</span><span class="p">,</span>
+                <span class="mi">532</span><span class="p">,</span>
+                <span class="mi">522</span><span class="p">,</span>
+                <span class="mi">512</span><span class="p">,</span>
+                <span class="mi">502</span><span class="p">,</span>
+                <span class="mi">491</span><span class="p">,</span>
+                <span class="mi">482</span><span class="p">,</span>
+                <span class="mi">472</span><span class="p">,</span>
+                <span class="mi">462</span><span class="p">,</span>
+                <span class="mi">452</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;02ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;03ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;thermistor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">656</span><span class="p">,</span>
+                <span class="mi">646</span><span class="p">,</span>
+                <span class="mi">636</span><span class="p">,</span>
+                <span class="mi">625</span><span class="p">,</span>
+                <span class="mi">615</span><span class="p">,</span>
+                <span class="mi">605</span><span class="p">,</span>
+                <span class="mi">594</span><span class="p">,</span>
+                <span class="mi">584</span><span class="p">,</span>
+                <span class="mi">573</span><span class="p">,</span>
+                <span class="mi">563</span><span class="p">,</span>
+                <span class="mi">553</span><span class="p">,</span>
+                <span class="mi">542</span><span class="p">,</span>
+                <span class="mi">532</span><span class="p">,</span>
+                <span class="mi">522</span><span class="p">,</span>
+                <span class="mi">512</span><span class="p">,</span>
+                <span class="mi">502</span><span class="p">,</span>
+                <span class="mi">491</span><span class="p">,</span>
+                <span class="mi">482</span><span class="p">,</span>
+                <span class="mi">472</span><span class="p">,</span>
+                <span class="mi">462</span><span class="p">,</span>
+                <span class="mi">452</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;04ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;05ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;06ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;07ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;08ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;thermistor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">656</span><span class="p">,</span>
+                <span class="mi">646</span><span class="p">,</span>
+                <span class="mi">636</span><span class="p">,</span>
+                <span class="mi">625</span><span class="p">,</span>
+                <span class="mi">615</span><span class="p">,</span>
+                <span class="mi">605</span><span class="p">,</span>
+                <span class="mi">594</span><span class="p">,</span>
+                <span class="mi">584</span><span class="p">,</span>
+                <span class="mi">573</span><span class="p">,</span>
+                <span class="mi">563</span><span class="p">,</span>
+                <span class="mi">553</span><span class="p">,</span>
+                <span class="mi">542</span><span class="p">,</span>
+                <span class="mi">532</span><span class="p">,</span>
+                <span class="mi">522</span><span class="p">,</span>
+                <span class="mi">512</span><span class="p">,</span>
+                <span class="mi">502</span><span class="p">,</span>
+                <span class="mi">491</span><span class="p">,</span>
+                <span class="mi">482</span><span class="p">,</span>
+                <span class="mi">472</span><span class="p">,</span>
+                <span class="mi">462</span><span class="p">,</span>
+                <span class="mi">452</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;09ff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;thermistor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">656</span><span class="p">,</span>
+                <span class="mi">646</span><span class="p">,</span>
+                <span class="mi">636</span><span class="p">,</span>
+                <span class="mi">625</span><span class="p">,</span>
+                <span class="mi">615</span><span class="p">,</span>
+                <span class="mi">605</span><span class="p">,</span>
+                <span class="mi">594</span><span class="p">,</span>
+                <span class="mi">584</span><span class="p">,</span>
+                <span class="mi">573</span><span class="p">,</span>
+                <span class="mi">563</span><span class="p">,</span>
+                <span class="mi">553</span><span class="p">,</span>
+                <span class="mi">542</span><span class="p">,</span>
+                <span class="mi">532</span><span class="p">,</span>
+                <span class="mi">522</span><span class="p">,</span>
+                <span class="mi">512</span><span class="p">,</span>
+                <span class="mi">502</span><span class="p">,</span>
+                <span class="mi">491</span><span class="p">,</span>
+                <span class="mi">482</span><span class="p">,</span>
+                <span class="mi">472</span><span class="p">,</span>
+                <span class="mi">462</span><span class="p">,</span>
+                <span class="mi">452</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0aff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;thermistor&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="mi">656</span><span class="p">,</span>
+                <span class="mi">646</span><span class="p">,</span>
+                <span class="mi">636</span><span class="p">,</span>
+                <span class="mi">625</span><span class="p">,</span>
+                <span class="mi">615</span><span class="p">,</span>
+                <span class="mi">605</span><span class="p">,</span>
+                <span class="mi">594</span><span class="p">,</span>
+                <span class="mi">584</span><span class="p">,</span>
+                <span class="mi">573</span><span class="p">,</span>
+                <span class="mi">563</span><span class="p">,</span>
+                <span class="mi">553</span><span class="p">,</span>
+                <span class="mi">542</span><span class="p">,</span>
+                <span class="mi">532</span><span class="p">,</span>
+                <span class="mi">522</span><span class="p">,</span>
+                <span class="mi">512</span><span class="p">,</span>
+                <span class="mi">502</span><span class="p">,</span>
+                <span class="mi">491</span><span class="p">,</span>
+                <span class="mi">482</span><span class="p">,</span>
+                <span class="mi">472</span><span class="p">,</span>
+                <span class="mi">462</span><span class="p">,</span>
+                <span class="mi">452</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0bff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0cff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;read&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;device_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0dff&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;device_type&quot;</span><span class="p">:</span> <span class="s2">&quot;power&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;power&quot;</span><span class="p">:</span>
+            <span class="p">{</span>
+              <span class="s2">&quot;repeatable&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s2">&quot;0,0,0,0&quot;</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The OpenDCRE emulator simulates a single OpenDCRE HAT board with 13 devices.  The JSON document file is structured around a collection of boards and devices.</p>
+</div>
+<div class="section" id="boards">
+<h2>Boards<a class="headerlink" href="#boards" title="Permalink to this headline">¶</a></h2>
+<p>Each board must have a <cite>board_id</cite> and <cite>firmware_version</cite> field.  Each <cite>board_id</cite> must be a unique 4-byte value, encoded as a hex string between &#8220;00000000&#8221; and &#8220;00FFFFFF&#8221; (the upper byte is reserved, and must always be 00), and <cite>firmware_version</cite> must be a string value (including empty string).</p>
+<p>The <cite>board_id</cite> is used in the OpenDCRE API to address a given board, while the <cite>firmware_version</cite> field is used to populate the <cite>firmware_version</cite> field of the response to the OpenDCRE &#8220;version&#8221; command for a given board (e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>http://&lt;ipaddress&gt;:5000/opendcre/1.1/version/1
+</pre></div>
+</div>
+<p>gets the version information for board 1).</p>
+<p>As with all commands in OpenDCRE, if a board or device does not exist in the emulator configuration, then a 500 error is returned as the result of a given command.</p>
+</div>
+<div class="section" id="devices">
+<h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
+<p>A given board also has a collection of devices.  Each device is identified by a <cite>device_id</cite>, used to indicate a given device in an OpenDCRE command - e.g.:
+::
+<a class="reference external" href="http:/">http:/</a>/&lt;ipaddress&gt;:5000/opendcre/1.1/read/thermistor/00000001/01ff</p>
+<p>The <cite>device_id</cite> field is a 2-byte value represented as a hexadecimal string that is unique to a given board.</p>
+</div>
+<div class="section" id="device-types">
+<h2>Device Types<a class="headerlink" href="#device-types" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>device_type</cite> field must be present, and must contain a string value that corresponds to an OpenDCRE-supported device type.  This list includes:</p>
+<ul class="simple">
+<li><cite>thermistor</cite></li>
+<li><cite>power</cite></li>
+<li><cite>humidity</cite></li>
+<li><cite>pressure</cite></li>
+<li><cite>led</cite></li>
+<li><cite>ipmb</cite></li>
+<li><cite>door_lock</cite></li>
+<li><cite>current</cite></li>
+<li><cite>temperature</cite></li>
+<li><cite>none</cite></li>
+</ul>
+<p>A device type of <cite>none</cite> indicates that no device is present at a given <cite>device_id</cite> on the given board, and may be ignored.</p>
+<p>Other device types (e.g. for additional sensors and actions) will be added in future revisions of OpenDCRE, or may be added by developers wishing to add support for other device types.</p>
+<p>Finally, a field corresponding to the action supported for a given device type is required.  A map of device types to supported actions is below:</p>
+<p>{| class=&#8221;wikitable&#8221;
+! style=&#8221;text-align:center;&#8221; | Device Type
+!Action Supported
+<a href="#id1"><span class="problematic" id="id2">|</span></a>-
+<a href="#id3"><span class="problematic" id="id4">|</span></a><cite>thermistor</cite>
+<a href="#id5"><span class="problematic" id="id6">|</span></a><cite>read</cite>
+<a href="#id7"><span class="problematic" id="id8">|</span></a>-
+<a href="#id9"><span class="problematic" id="id10">|</span></a><cite>power</cite>
+<a href="#id11"><span class="problematic" id="id12">|</span></a><cite>power</cite>
+<a href="#id13"><span class="problematic" id="id14">|</span></a>-
+<a href="#id15"><span class="problematic" id="id16">|</span></a><cite>humidity</cite>
+<a href="#id17"><span class="problematic" id="id18">|</span></a><cite>read</cite>
+<a href="#id19"><span class="problematic" id="id20">|</span></a>-
+<a href="#id21"><span class="problematic" id="id22">|</span></a><cite>pressure</cite>
+<a href="#id23"><span class="problematic" id="id24">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id25"><span class="problematic" id="id26">|</span></a>-
+<a href="#id27"><span class="problematic" id="id28">|</span></a><cite>led</cite>
+<a href="#id29"><span class="problematic" id="id30">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id31"><span class="problematic" id="id32">|</span></a>-
+<a href="#id33"><span class="problematic" id="id34">|</span></a><cite>ipmb</cite>
+<a href="#id35"><span class="problematic" id="id36">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id37"><span class="problematic" id="id38">|</span></a>-
+<a href="#id39"><span class="problematic" id="id40">|</span></a><cite>door_lock</cite>
+<a href="#id41"><span class="problematic" id="id42">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id43"><span class="problematic" id="id44">|</span></a>-
+<a href="#id45"><span class="problematic" id="id46">|</span></a><cite>current</cite>
+<a href="#id47"><span class="problematic" id="id48">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id49"><span class="problematic" id="id50">|</span></a>-
+<a href="#id51"><span class="problematic" id="id52">|</span></a><cite>temperature</cite>
+<a href="#id53"><span class="problematic" id="id54">|</span></a>none (may be added in future OpenDCRE release)
+<a href="#id55"><span class="problematic" id="id56">|</span></a>-
+<a href="#id57"><span class="problematic" id="id58">|</span></a><cite>none</cite>
+<a href="#id59"><span class="problematic" id="id60">|</span></a>none
+<a href="#id61"><span class="problematic" id="id62">|</span></a>}</p>
+</div>
+<div class="section" id="read">
+<h2>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h2>
+<p>For the <cite>read</cite> action&#8217;s field in the OpenDCRE emulator configuration, two fields may be configured, relating to the responses returned from a read command for the given device.</p>
+<p>First, the <cite>repeatable</cite> field may be set to true or false, depending on whether it is desirable for the list of responses set in the responses field to repeat in a round-robin fashion, or if a device should stop returning data after its response list has been exhausted.</p>
+<p>The <cite>responses</cite> field is a list of zero or more raw (integer) values that may be returned for a given read command.  The raw values are converted by the built-in OpenDCRE conversion functions, based on the given <cite>device_type</cite>.  Some examples are given for the thermistor sensor device type in the <cite>simple.json</cite> file.</p>
+<p>When a list of values is provided for responses, the emulator iterates sequentially through the items in that list, until the list is exhausted (if repeatable is set to &#8220;true&#8221;, then the emulator returns to the beginning of the list).</p>
+<p>An empty responses list means the device returns no data, which translates to a 500 error for the read command at the OpenDCRE REST API level (useful for simulating errors).  To always return the same single value, a responses list with a single element, and repeatable set to &#8220;true&#8221; will suffice.</p>
+</div>
+<div class="section" id="power">
+<h2>Power<a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h2>
+<p>For the <cite>power</cite> action&#8217;s field in the OpenDCRE emulator configuration, similar fields are present - repeatable and responses.</p>
+<p>For every power command (e.g. <cite>on</cite>/<cite>off</cite>/<cite>cycle</cite>/<cite>status</cite>) issued to a power device in the OpenDCRE emulator, a response is returned from the responses list, which may be repeatable or non-repeatable.  The values in the responses list correspond to power status values returned over PMBUS from the hot swap controller on an OCP server, and are expressed as an integer value in the emulator configuration (see example above).  OpenDCRE converts the raw response to a friendly power status result using its built-in conversion functions.</p>
+</div>
+<div class="section" id="other-notes">
+<h2>Other Notes<a class="headerlink" href="#other-notes" title="Permalink to this headline">¶</a></h2>
+<p>The emulator configuration in <cite>simple.json</cite> is designed to provide a simple view and demonstration of how OpenDCRE works.  The OpenDCRE emulator is also used for testing purposes, and additional emulator configurations may be found under the <cite>/opendcre/opendcre_southbound/tests</cite> directory of the OpenDCRE Docker container.</p>
+<p>An invalid emulator configuration will cause the OpenDCRE emulator to fail to start or function properly.</p>
+</div>
+<div class="section" id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<p>When using the OpenDCRE HAT board with OpenMistOS and OpenDCRE, no software or configuration changes are necessary.  The &#8220;scan&#8221; command (e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>http://&lt;ipaddress&gt;:5000/opendcre/1.1/scan`
+</pre></div>
+</div>
+<p>) provides a real-time list of devices present on the HAT board.</p>
+<p>To switch between the HAT and emulator, simply power-down the OpenMistOS Raspberry Pi, and add or remove the HAT.  On power-up, the HAT&#8217;s presence or absence will be detected, determining whether or not the emulator should be used.</p>
+</div>
 </div>
 
 
@@ -154,7 +503,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ipmi.html" class="btn btn-neutral float-right" title="IPMI Bridge" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="configuringopendcre.html" class="btn btn-neutral" title="Configuring OpenDCRE &amp; OpenMistOS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
