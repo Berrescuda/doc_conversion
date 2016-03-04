@@ -1,6 +1,6 @@
-==================================
-Configuring OpendDCRE & OpenMistOS
-==================================
+=====================
+Configuring OpendDCRE
+=====================
 
 Customization
 --------------

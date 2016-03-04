@@ -11,8 +11,9 @@ __ OpenDCRE_
 Next, to build a custom distribution of OpenDCRE (for example, to include site-specific TLS certificates, or to configure nginx to use site-specific authn/authz), the included Dockerfile can be used to package up the distribution.
 
 In the simplest case, from the opendcre directory:
+::
 
-``docker build -t vaporio/opendcre:custom-v1.1.0 .``
+    docker build -t vaporio/opendcre:custom-v1.1.0 .
 
 Apply whatever tag is most descriptive for the custom image.
 

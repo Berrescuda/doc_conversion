@@ -11,11 +11,11 @@ OpenDCRE (Open Data Center Runtime Environment)
     :maxdepth: 2
 
     introduction
-    gettingopendcre
-    configuringopendcre
+    installation
+    setup
     api
-    releasenotes
-    
+    release
+
 - `OpendDCRE on GitHub`__.
 
 .. _Github: https://github.com/vapor-ware/OpenDCRE
