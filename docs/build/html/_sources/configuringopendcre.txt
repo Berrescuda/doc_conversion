@@ -11,4 +11,3 @@ Configuring OpenDCRE & OpenMistOS
     run
     dockerbuild
     update
-    demoui

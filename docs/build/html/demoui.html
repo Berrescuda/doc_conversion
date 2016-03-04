@@ -89,7 +89,8 @@
 <li class="toctree-l2"><a class="reference internal" href="emulator.html">OpenDCRE Emulator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ipmi.html">IPMI Bridge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="configure.html">Configuring OpendDCRE &amp; OpenMistOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Running and Testing OpenDCRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">Running and Testing OpenDCRE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dockerbuild.html">Building OpenDCRE Docker Container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">Updating OpenDCRE</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Demo UI Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#getting-the-demo">Getting the Demo</a></li>
@@ -152,7 +153,7 @@
 <p>A lightweight OpenDCRE demo is included with the OpenMistOS image and can be run as a docker container (along with the OpenDCRE container). By default, the demo is accessible on port 80 of the Pi running OpenMistOS. If desired, the demo container can be set to run on startup along with the OpenDCRE container.</p>
 <div class="section" id="getting-the-demo">
 <h2>Getting the Demo<a class="headerlink" href="#getting-the-demo" title="Permalink to this headline">¶</a></h2>
-<p>The demo site can be downloaded as a standalone image from [<a class="reference external" href="https://hub.docker.com/r/vaporio/opendcre-demo/">https://hub.docker.com/r/vaporio/opendcre-demo/</a> DockerHub], or the demo source can be download from [<a class="reference external" href="https://github.com/vapor-ware/opendcre-demo">https://github.com/vapor-ware/opendcre-demo</a> GitHub].</p>
+<p>The demo site can be downloaded as a standalone image from <a class="reference external" href="https://hub.docker.com/r/vaporio/opendcre-demo">DockerHub</a>, or the demo source can be download from <a class="reference external" href="https://github.com/vapor-ware/opendcre-demo">GitHub</a>.</p>
 <p>From DockerHub:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>docker pull vaporio/opendcre-demo
 </pre></div>
@@ -177,23 +178,23 @@ demo/assets/js/opendcre/opendcre.config.js</p>
 ! style=&#8221;text-align:center;&#8221; | Option
 !Default Value
 !Description
-<a href="#id1"><span class="problematic" id="id2">|</span></a>-
-<a href="#id3"><span class="problematic" id="id4">|</span></a><code class="docutils literal"><span class="pre">opendcre_base_url</span></code>
-<a href="#id5"><span class="problematic" id="id6">|</span></a><a class="reference external" href="http://opendcre:5000/opendcre/1.1/">http://opendcre:5000/opendcre/1.1/</a>
-<a href="#id7"><span class="problematic" id="id8">|</span></a>base url for endpoint queries
-<a href="#id9"><span class="problematic" id="id10">|</span></a>-
-<a href="#id11"><span class="problematic" id="id12">|</span></a><code class="docutils literal"><span class="pre">opendcre_thermistor_limit</span></code>
-<a href="#id13"><span class="problematic" id="id14">|</span></a>41
-<a href="#id15"><span class="problematic" id="id16">|</span></a>y-value at which red line is added to thermistor graphs to represent ‘max allowable value’ limit
-<a href="#id17"><span class="problematic" id="id18">|</span></a>-
-<a href="#id19"><span class="problematic" id="id20">|</span></a><code class="docutils literal"><span class="pre">chart_points</span></code>
-<a href="#id21"><span class="problematic" id="id22">|</span></a>25
-<a href="#id23"><span class="problematic" id="id24">|</span></a>maximum number of points to include in sensor graphs
-<a href="#id25"><span class="problematic" id="id26">|</span></a>-
-<a href="#id27"><span class="problematic" id="id28">|</span></a><code class="docutils literal"><span class="pre">thermistor_poll_interval</span></code>
-<a href="#id29"><span class="problematic" id="id30">|</span></a>750
-<a href="#id31"><span class="problematic" id="id32">|</span></a>time (in milliseconds) of the polling interval for thermistor reads
-<a href="#id33"><span class="problematic" id="id34">|</span></a>}</p>
+<a href="#id3"><span class="problematic" id="id4">|</span></a>-
+<a href="#id5"><span class="problematic" id="id6">|</span></a><code class="docutils literal"><span class="pre">opendcre_base_url</span></code>
+<a href="#id7"><span class="problematic" id="id8">|</span></a><a class="reference external" href="http://opendcre:5000/opendcre/1.1/">http://opendcre:5000/opendcre/1.1/</a>
+<a href="#id9"><span class="problematic" id="id10">|</span></a>base url for endpoint queries
+<a href="#id11"><span class="problematic" id="id12">|</span></a>-
+<a href="#id13"><span class="problematic" id="id14">|</span></a><code class="docutils literal"><span class="pre">opendcre_thermistor_limit</span></code>
+<a href="#id15"><span class="problematic" id="id16">|</span></a>41
+<a href="#id17"><span class="problematic" id="id18">|</span></a>y-value at which red line is added to thermistor graphs to represent ‘max allowable value’ limit
+<a href="#id19"><span class="problematic" id="id20">|</span></a>-
+<a href="#id21"><span class="problematic" id="id22">|</span></a><code class="docutils literal"><span class="pre">chart_points</span></code>
+<a href="#id23"><span class="problematic" id="id24">|</span></a>25
+<a href="#id25"><span class="problematic" id="id26">|</span></a>maximum number of points to include in sensor graphs
+<a href="#id27"><span class="problematic" id="id28">|</span></a>-
+<a href="#id29"><span class="problematic" id="id30">|</span></a><code class="docutils literal"><span class="pre">thermistor_poll_interval</span></code>
+<a href="#id31"><span class="problematic" id="id32">|</span></a>750
+<a href="#id33"><span class="problematic" id="id34">|</span></a>time (in milliseconds) of the polling interval for thermistor reads
+<a href="#id35"><span class="problematic" id="id36">|</span></a>}</p>
 </div>
 <div class="section" id="running-the-demo">
 <h2>Running the Demo<a class="headerlink" href="#running-the-demo" title="Permalink to this headline">¶</a></h2>

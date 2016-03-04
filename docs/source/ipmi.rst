@@ -25,6 +25,7 @@ The Vapor IPMI bridge is configured via the ``bmc_config.json`` file, located in
 
 All IPMI BMCs successfully configured will show up on a ``scan`` command result as devices under ``board_id`` 40000000.
 ::
+
   {
     "bmcs": [
       {

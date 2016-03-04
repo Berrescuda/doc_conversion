@@ -28,22 +28,30 @@ Download and Install
 Download
 --------
 
-- [http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz Download OpenMistOS], and decompress the .img file.  [https://github.com/vapor-ware/OpenDCRE OpenDCRE Source] on GitHub.
+- `Download OpenMistOS`__ , and decompress the .img file.  `OpenDCRE Source`__ on GitHub.
+
+.. _OpenMistOS: http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz
+
+.. _OpenDCRE: https://github.com/vapor-ware/OpenDCRE 
+
+__ OpenMistOS_
+
+__ OpenDCRE_
 
 Install
 -------
 
 - Insert Micro SD card into card reader, and determine the SD card device:
-    - *MacOS*: 
+    - MacOS: 
         - ``sudo diskutil list``
-    - *Linux*:  
+    - Linux:  
         - ``sudo fdisk -l``
 - Use ``dd`` to write image to card:
-    - *MacOS*: 
+    - MacOS: 
         - ``sudo dd if=<.img file> of=<sd card device> bs=4m``
-    - *Linux*: 
+    - Linux: 
         - ``sudo dd if=<.img file> of=<sd card device> bs=4M``
-    - *Note*:
+    - Note:
         - ``<.img file>`` is the path and filename of the decompressed OpenMistOS .img downloaded above.
         - ``<sd card device>`` is the SD card device determined in the previous step. (e.g. - /dev/disk1)
 
@@ -67,9 +75,9 @@ Ssh into the OpenMistOS device:
 - *Password*:  ``0p3ndcr3!``
 
 
-The openmistos user has sudo rights on OpenMistOS.  It is recommended to <b>immediately</b> change the openmistos password to a new, secure, password.
+The openmistos user has sudo rights on OpenMistOS.  It is recommended to **immediately** change the openmistos password to a new, secure, password.
 
-<b>Note</b>: OpenMistOS, like other Raspberry Pi OSes, uses only the space required for the OS on the SD card. It is recommended to change this behavior so that the entire space on the SD card is used. To do this, enter the configuration menu on first login:
+**Note**: OpenMistOS, like other Raspberry Pi OSes, uses only the space required for the OS on the SD card. It is recommended to change this behavior so that the entire space on the SD card is used. To do this, enter the configuration menu on first login:
 
 ``$ sudo raspi-config``
 
@@ -84,10 +92,12 @@ Browser
 
 Navigate to:
 ::
-http://<openmistos ip address>:5000/opendcre/1.1/test
+
+    http://<openmistos ip address>:5000/opendcre/1.1/test
 
 Output should be similar to:
 ::
+
     {
         "status": "ok"
     }
@@ -96,19 +106,22 @@ Command-Line
 ------------
 
 Running:
-
 ``$ docker ps``
 
 produces output similar to:
 ::
+
     CONTAINER ID        IMAGE                      COMMAND                CREATED          STATUS              PORTS                    NAMES
-    a9419ff86502        vaporio/opendcre:latest    "./start_opendcre.sh   4 days ago       Up 4 days           0.0.0.0:5000->5000/tcp   opendcre       
+    a9419ff86502        vaporio/opendcre:latest    "./start_opendcre.sh   4 days ago       Up 4 days           0.0.0.0:5000->5000/tcp   opendcre
+
 (when using the HAT)
 
 or:
 ::
+
     CONTAINER ID        IMAGE                     COMMAND                CREATED             STATUS              PORTS                    NAMES
     2281101f6a60        vaporio/opendcre:latest   "./start_opendcre_em   4 days ago          Up 4 days           0.0.0.0:5000->5000/tcp   opendcre
+
 (when using the emulator)
 
 The OpenDCRE service starts automatically at boot; it can be started/stopped via the init.d daemon:

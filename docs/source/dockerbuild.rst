@@ -1,32 +1,19 @@
-============================
-Running and Testing OpenDCRE
-============================
+==================================
+Building OpenDCRE Docker Container
+==================================
 
-Normally, OpenDCRE may be started and stopped via its built-in OpenMistOS init.d script (``/etc/init.d/opendcre {start|stop|restart}``).
+Building a modified OpenDCRE container is a fairly straightforward process.  First, clone the `OpenDCRE GitHub repository`__ to a location on OpenMistOS.
 
-When starting OpenDCRE manually, the following steps may be followed.
+.. _OpenDCRE: https://github.com/vapor-ware/OpenDCRE
 
-- First, OpenDCRE expects a volume to be exposed for logs (``/logs`` is the location within the container, which should be mapped externally). 
-- Additionally, OpenDCRE, by default, uses TCP port 5000 to listen for API requests. 
-- In cases where the OpenDCRE HAT is used with the OpenDCRE container, the /dev/ttyAMA0 serial device is also required.
+__ OpenDCRE_
 
-With HAT
---------
+Next, to build a custom distribution of OpenDCRE (for example, to include site-specific TLS certificates, or to configure nginx to use site-specific authn/authz), the included Dockerfile can be used to package up the distribution.
 
-To start OpenDCRE with the HAT device attached:
+In the simplest case, from the opendcre directory:
 
-``docker run -d -p 5000:5000 -v /var/log/opendcre:/logs --device /dev/ttyAMA0:/dev/ttyAMA0 opendcre ./start_opendcre.sh``
+``docker build -t vaporio/opendcre:custom-v1.1.0 .``
 
-With Emulator
--------------
+Apply whatever tag is most descriptive for the custom image.
 
-To start OpenDCRE in emulator mode:
-
-``docker run -d -p 5000:5000 -v /var/log/opendcre:/logs opendcre ./start_opendcre_emulator.sh``
-
-Run Tests
----------
-
-To run the OpenDCRE test suite:
-
-``docker run -ti -v /var/log/opendcre:/logs opendcre ./opendcre_southbound/bus-test.py``
+From this point, test and run OpenDCRE to ensure the changes were successful.

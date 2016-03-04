@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting OpenDCRE &amp; OpenMistOS &mdash; doc_test 0 documentation</title>
+  <title>Getting OpenDCRE &amp; OpenMistOS &mdash; OpenDCRE 1 documentation</title>
   
 
   
@@ -30,9 +30,9 @@
   
 
   
-    <link rel="top" title="doc_test 0 documentation" href="index.html"/>
+    <link rel="top" title="OpenDCRE 1 documentation" href="index.html"/>
         <link rel="next" title="Configuring OpenDCRE &amp; OpenMistOS" href="configuringopendcre.html"/>
-        <link rel="prev" title="OpenDCRE Introduction" href="introduction.html"/> 
+        <link rel="prev" title="Introduction" href="introduction.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> doc_test
+            <a href="index.html" class="icon icon-home"> OpenDCRE
           
 
           
@@ -82,7 +82,7 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">OpenDCRE Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting OpenDCRE &amp; OpenMistOS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a></li>
@@ -117,7 +117,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">doc_test</a>
+        <a href="index.html">OpenDCRE</a>
       </nav>
 
 
@@ -177,7 +177,7 @@
 <div class="section" id="download">
 <h3>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>[<a class="reference external" href="http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz">http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz</a> Download OpenMistOS], and decompress the .img file.  [<a class="reference external" href="https://github.com/vapor-ware/OpenDCRE">https://github.com/vapor-ware/OpenDCRE</a> OpenDCRE Source] on GitHub.</li>
+<li><a class="reference external" href="http://www.vapor.io/file/2015/11/OpenMistOS-v1.0.0.img.tar.gz">Download OpenMistOS</a> , and decompress the .img file.  <a class="reference external" href="https://github.com/vapor-ware/OpenDCRE">OpenDCRE Source</a> on GitHub.</li>
 </ul>
 </div>
 <div class="section" id="install">
@@ -187,7 +187,7 @@
 <dt>Insert Micro SD card into card reader, and determine the SD card device:</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt><em>MacOS</em>:</dt>
+<dt>MacOS:</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">diskutil</span> <span class="pre">list</span></code></li>
 </ul>
@@ -195,7 +195,7 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>Linux</em>:</dt>
+<dt>Linux:</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">fdisk</span> <span class="pre">-l</span></code></li>
 </ul>
@@ -210,7 +210,7 @@
 <dt>Use <code class="docutils literal"><span class="pre">dd</span></code> to write image to card:</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt><em>MacOS</em>:</dt>
+<dt>MacOS:</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">if=&lt;.img</span> <span class="pre">file&gt;</span> <span class="pre">of=&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span> <span class="pre">bs=4m</span></code></li>
 </ul>
@@ -218,7 +218,7 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>Linux</em>:</dt>
+<dt>Linux:</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">if=&lt;.img</span> <span class="pre">file&gt;</span> <span class="pre">of=&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span> <span class="pre">bs=4M</span></code></li>
 </ul>
@@ -226,7 +226,7 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>Note</em>:</dt>
+<dt>Note:</dt>
 <dd><ul class="first last simple">
 <li><code class="docutils literal"><span class="pre">&lt;.img</span> <span class="pre">file&gt;</span></code> is the path and filename of the decompressed OpenMistOS .img downloaded above.</li>
 <li><code class="docutils literal"><span class="pre">&lt;sd</span> <span class="pre">card</span> <span class="pre">device&gt;</span></code> is the SD card device determined in the previous step. (e.g. - /dev/disk1)</li>
@@ -268,8 +268,8 @@
 <li><em>Username</em>:  <code class="docutils literal"><span class="pre">openmistos</span></code></li>
 <li><em>Password</em>:  <code class="docutils literal"><span class="pre">0p3ndcr3!</span></code></li>
 </ul>
-<p>The openmistos user has sudo rights on OpenMistOS.  It is recommended to &lt;b&gt;immediately&lt;/b&gt; change the openmistos password to a new, secure, password.</p>
-<p>&lt;b&gt;Note&lt;/b&gt;: OpenMistOS, like other Raspberry Pi OSes, uses only the space required for the OS on the SD card. It is recommended to change this behavior so that the entire space on the SD card is used. To do this, enter the configuration menu on first login:</p>
+<p>The openmistos user has sudo rights on OpenMistOS.  It is recommended to <strong>immediately</strong> change the openmistos password to a new, secure, password.</p>
+<p><strong>Note</strong>: OpenMistOS, like other Raspberry Pi OSes, uses only the space required for the OS on the SD card. It is recommended to change this behavior so that the entire space on the SD card is used. To do this, enter the configuration menu on first login:</p>
 <p><code class="docutils literal"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">raspi-config</span></code></p>
 <p>In the configuration menu, there should be an option to use the entire disk. Once selected and confirmed, OpenMistOS will restart and the entire SD card will then be used.</p>
 </div>
@@ -279,9 +279,10 @@
 </div>
 <div class="section" id="browser">
 <h3>Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h3>
-<p>Navigate to:
-::
-<a class="reference external" href="http:/">http:/</a>/&lt;openmistos ip address&gt;:5000/opendcre/1.1/test</p>
+<p>Navigate to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>http://&lt;openmistos ip address&gt;:5000/opendcre/1.1/test
+</pre></div>
+</div>
 <p>Output should be similar to:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
@@ -291,8 +292,8 @@
 </div>
 <div class="section" id="command-line">
 <h3>Command-Line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h3>
-<p>Running:</p>
-<p><code class="docutils literal"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span></code></p>
+<p>Running:
+<code class="docutils literal"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span></code></p>
 <p>produces output similar to:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span>CONTAINER ID        IMAGE                      COMMAND                CREATED          STATUS              PORTS                    NAMES
 a9419ff86502        vaporio/opendcre:latest    &quot;./start_opendcre.sh   4 days ago       Up 4 days           0.0.0.0:5000-&gt;5000/tcp   opendcre
@@ -325,7 +326,7 @@ a9419ff86502        vaporio/opendcre:latest    &quot;./start_opendcre.sh   4 day
         <a href="configuringopendcre.html" class="btn btn-neutral float-right" title="Configuring OpenDCRE &amp; OpenMistOS" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral" title="OpenDCRE Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -356,7 +357,7 @@ a9419ff86502        vaporio/opendcre:latest    &quot;./start_opendcre.sh   4 day
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0',
+            VERSION:'1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

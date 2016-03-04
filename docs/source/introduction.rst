@@ -1,6 +1,6 @@
-=====================
-OpenDCRE Introduction
-=====================
+============
+Introduction
+============
 
 OpenDCRE provides a securable RESTful API for monitoring and control of data center and IT equipment, including reading sensors and server power control - via power line communications (PLC) over a DC bus bar, or via IPMI over LAN. The OpenDCRE API is easy to integrate into third-party monitoring, management and orchestration providers, while providing a simple, curl-able interface for common and custom devops tasks.
 
@@ -22,7 +22,8 @@ OpenDCRE is part of the OpenMistOS Linux distribution that runs on the Raspberry
 
 OpenDCRE exposes a RESTful API via an HTTP endpoint in the OpenDCRE container.  The HTTP endpoint is comprised of nginx as the front-end, with uwsgi as a reverse proxy for a Python Flask application.  Within Flask, OpenDCRE uses a text-based serial protocol to communicate with the OpenDCRE device bus, which is the primary communications channel between API users and the device bus.  
 
-[[File:OpenDCRE_diagram01.png|center|450px]]
+.. image:: images/OpenDCRE_diagram01.png
+    :align: center
 
 The OpenDCRE device bus is comprised of a set of boards and devices, individually addressable, and globally scannable for a real-time inventory of addressable devices attached to the bus.  The OpenDCRE device bus allows devices to be read and written, and for various actions to be carried out, such as power control (on/off/cycle/status).  Additionally, when a physical OpenDCRE device bus is not present, a software emulator can be used to simulate OpenDCRE API commands and functionality.
 

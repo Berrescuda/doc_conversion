@@ -20,8 +20,17 @@ Notes
 Request Format
 --------------
 
-- Scan devices on a specific ``board_id``: ``http://<ipaddress>:<port>/opendcre/<version>/scan/<board_id>``
-- Scan all boards on the device bus: ``http://<ipaddress>:<port>/opendcre/<version>/scan``
+- Scan devices on a specific ``board_id``:
+
+::
+
+    http://<ipaddress>:<port>/opendcre/<version>/scan/<board_id>
+
+- Scan all boards on the device bus:
+
+::
+
+    http://<ipaddress>:<port>/opendcre/<version>/scan
 
 Parameters
 ----------
@@ -30,93 +39,96 @@ Parameters
 
 Request Example
 ---------------
+::
 
-- `http://opendcre:5000/opendcre/1.1/scan`
+    http://opendcre:5000/opendcre/1.1/scan
 
 Response Schema
 ---------------
 
-a
 ::
-	{
-	    "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-boards-devices",
-	    "title": "OpenDCRE Boards and Devices",
-	    "type": "object",
-	    "properties": {
-	        "boards": {
-	            "type": "array",
-	            "items": {
-	                "type": "object",
-	                "properties": {
-	                    "board_index": {
-	                        "type": "string"
-	                    },
-	                    "devices": {
-	                        "type": "array",
-	                        "items": {
-	                            "type": "object",
-	                            "properties": {
-	                                "device_id": {
-	                                    "type": "string"
-	                                },
-	                                "device_type": {
-	                                    "type": "string",
-	                                    "enum": [
-	                                        "temperature",
-	                                        "thermistor",
-	                                        "humidity",
-	                                        "led",
-	                                        "ipmb",
-	                                        "power",
-	                                        "door_lock",
-	                                        "current",
-	                                        "pressure",
-	                                        "mone"
-	                                    ]
-	                                }
-	                            }
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	    }
-	}
+
+    {
+        "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-boards-devices",
+        "title": "OpenDCRE Boards and Devices",
+        "type": "object",
+        "properties": {
+            "boards": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "board_index": {
+                            "type": "string"
+                        },
+                        "devices": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "device_id": {
+                                        "type": "string"
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "temperature",
+                                            "thermistor",
+                                            "humidity",
+                                            "led",
+                                            "ipmb",
+                                            "power",
+                                            "door_lock",
+                                            "current",
+                                            "pressure",
+                                            "mone"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 Example Response
 ----------------
+
 ::
-	{
-	  "boards": [
-	    {
-	      "board_id": "00000001",
-	      "devices": [
-	        {
-	          "device_id": "01ff",
-	          "device_type": "thermistor"
-	        },
-	        {
-	          "device_id": "02ff",
-	          "device_type": "none"
-	        }
-	      ]
-	    },
-	    {
-	      "board_id": "00000002",
-	      "devices": [
-	        {
-	          "device_id": "01ff",
-	          "sensor_type": "thermistor"
-	        },
-	        {
-	          "device_id": "02ff",
-	          "device_type": "none"
-	        }
-	      ]
-	    }
-	  ]
-	}
+
+    {
+      "boards": [
+        {
+          "board_id": "00000001",
+          "devices": [
+            {
+              "device_id": "01ff",
+              "device_type": "thermistor"
+            },
+            {
+              "device_id": "02ff",
+              "device_type": "none"
+            }
+          ]
+        },
+        {
+          "board_id": "00000002",
+          "devices": [
+            {
+              "device_id": "01ff",
+              "sensor_type": "thermistor"
+            },
+            {
+              "device_id": "02ff",
+              "device_type": "none"
+            }
+          ]
+        }
+      ]
+    }
 
 Errors
 ------
@@ -133,8 +145,9 @@ Return version information about a given board given its ``board_id``.
 
 Request Format
 --------------
+::
 
-- ``http://<ipaddress>:<port>/opendcre/<version>/version/<board_id>``
+    http://<ipaddress>:<port>/opendcre/<version>/version/<board_id>
 
 Parameters
 ----------
@@ -144,36 +157,41 @@ Parameters
 Request Example
 ---------------
 ::
+
     https://opendcre:5000/opendcre/1.0/version/00000001
 
 Response Schema
 ---------------
+
 ::
-	{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-version",
-	  "title": "OpenDCRE Board Version",
-	  "type": "object",
-	  "properties": {
-	    "api_version": {
-	      "type": "string"
-	    },
-	    "firmware_version": {
-	      "type": "string"
-	    },
-	    "opendcre_version": {
-	      "type": "string"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-version",
+      "title": "OpenDCRE Board Version",
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string"
+        },
+        "firmware_version": {
+          "type": "string"
+        },
+        "opendcre_version": {
+          "type": "string"
+        }
+      }
+    }
 
 Example Response
 ----------------
+
 ::
-	{
-	  "api_version": "1.1", 
-	  "firmware_version": "OpenDCRE Emulator v1.1.0", 
-	  "opendcre_version": "1.1.0"
-	}
+
+    {
+      "api_version": "1.1", 
+      "firmware_version": "OpenDCRE Emulator v1.1.0", 
+      "opendcre_version": "1.1.0"
+    }
 
 Errors
 ------
@@ -189,7 +207,9 @@ Description
 - Read a value from the given ``board_id`` and ``device_id`` for a specific ``device_type``.  The specified ``device_type`` must match the actual physical device type (as reported by the ``scan`` command), and is used to return a translated raw reading value (e.g. temperature in C for a thermistor) based on the existing algorithm for a given sensor type.  The raw value is also returned.
 
 Request Format
-- ``http://<ipaddress>:<port>/opendcre/<version>/read/<device_type>/<board_id>/<device_id>``
+::
+
+    http://<ipaddress>:<port>/opendcre/<version>/read/<device_type>/<board_id>/<device_id>
 
 Parameters
 ----------
@@ -203,7 +223,7 @@ Parameters
     - ipmb (not implemented yet)
     - door_lock (not implemented yet)
     - pressure (not implemented yet)
-    - none (<u>Note</u>:  reading a "none" device will result in a 500 error).
+    - none (**Note**:  reading a "none" device will result in a 500 error)
 
 - ``board_id`` : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of ``board_id`` are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special ``board_id`` of 40000000.
 
@@ -211,33 +231,38 @@ Parameters
 
 Request Example
 ---------------
+::
 
-- ``http://opendcre:5000/opendcre/1.1/read/thermistor/00000001/01FF``
+    http://opendcre:5000/opendcre/1.1/read/thermistor/00000001/01FF
 
 Response Schema
 ---------------
+
 ::
-	{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-thermistor-reading",
-	  "title": "OpenDCRE Thermistor Reading",
-	  "type": "object",
-	  "properties": {
-	    "sensor_raw": {
-	      "type": "number"
-	    },
-	    "temperature_c": {
-	      "type": "number"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-thermistor-reading",
+      "title": "OpenDCRE Thermistor Reading",
+      "type": "object",
+      "properties": {
+        "sensor_raw": {
+          "type": "number"
+        },
+        "temperature_c": {
+          "type": "number"
+        }
+      }
+    }
 
 Example Response
 ----------------
+
 ::
-	{
-	  "sensor_raw": 755,
-	  "temperature_c": 19.73
-	}
+
+    {
+      "sensor_raw": 755,
+      "temperature_c": 19.73
+    }
 
 Errors
 ------
@@ -254,14 +279,15 @@ Description
 
 Request Format
 --------------
-
-- ``http://<ipaddress>:<port>/opendcre/<version>/read/<device_type>/<board_id>/<device_id>/info``
+::
+    
+    http://<ipaddress>:<port>/opendcre/<version>/read/<device_type>/<board_id>/<device_id>/info
 
 Parameters
 ----------
 
 - ``device_type``:  String value (lower-case) indicating what type of device to read:
-    - power (<u>Note</u>:  all other device types unsupported in this version of OpenDCRE).
+    - power (**Note**:  all other device types unsupported in this version of OpenDCRE).
 
 - ``board_id`` : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of ``board_id`` are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special ``board_id`` of 40000000.  IPMI BMC asset information is readable, but not writeable.
 
@@ -269,72 +295,82 @@ Parameters
 
 Request Example
 ---------------
+::
 
-- ``http://opendcre:5000/opendcre/1.1/read/power/00000001/01FF/info``
+    http://opendcre:5000/opendcre/1.1/read/power/00000001/01FF/info
 
 Response Schema
 ---------------
-	``{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading",
-	  "title": "OpenDCRE Asset Info Reading",
-	  "type": "object",
-	  "properties": {
-	    "board_id": {
-	      "type": "string"
-	    },
-	    "device_id: {
-	      "type": "string"
-	    },
-	    "asset_info: {
-	      "type": "string"
-	    }
-	  }
-	}``
+
+::
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading",
+      "title": "OpenDCRE Asset Info Reading",
+      "type": "object",
+      "properties": {
+        "board_id": {
+          "type": "string"
+        },
+        "device_id: {
+          "type": "string"
+        },
+        "asset_info: {
+          "type": "string"
+        }
+      }
+    }
 
 Alternately, for IPMI devices:
+
 ::
-{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading",
-	  "title": "OpenDCRE Asset Info Reading",
-	  "type": "object",
-	  "properties": {
-	    "board_id": {
-	      "type": "string"
-	    },
-	    "device_id: {
-	      "type": "string"
-	    },
-	    "asset_info: {
-	      "type": "string"
-	    },
-	    "bmc_ip: {
-	      "type": "string"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-reading",
+      "title": "OpenDCRE Asset Info Reading",
+      "type": "object",
+      "properties": {
+        "board_id": {
+          "type": "string"
+        },
+        "device_id: {
+          "type": "string"
+        },
+        "asset_info: {
+          "type": "string"
+        },
+        "bmc_ip: {
+          "type": "string"
+        }
+      }
+    }
 
 Example Response
 ----------------
+
 ::
-	{
-	  "board_id": "00000001",
-	  "device_id": "01FF",
-	  "asset_info": "example asset information"
-	}
+
+    {
+      "board_id": "00000001",
+      "device_id": "01FF",
+      "asset_info": "example asset information"
+    }
 
 Alternately, for IPMI devices:
+
 ::
-	{
-	  "board_id": "00000001",
-	  "device_id": "01FF",
-	  "asset_info": "example IPMI asset information",
-	  "bmc_ip": "123.124.10.100"
-	}
+
+    {
+      "board_id": "00000001",
+      "device_id": "01FF",
+      "asset_info": "example IPMI asset information",
+      "bmc_ip": "123.124.10.100"
+    }
 
 Errors
 ------
 
-- f asset info is not readable or does not exist, an error (500) is returned.
+- asset info is not readable or does not exist, an error (500) is returned.
 
 Write Asset Info
 ================
@@ -346,14 +382,15 @@ Description
 
 Request Format
 --------------
+::
 
-- ``http://<ipaddress>:<port>/opendcre/<version>/write/<device_type>/<board_id>/<device_id>/info/<value>``
+    http://<ipaddress>:<port>/opendcre/<version>/write/<device_type>/<board_id>/<device_id>/info/<value>
 
 Parameters
 ----------
 
 - ``device_type``:  String value (lower-case) indicating what type of device to write asset info for:
-    - power (<u>Note</u>:  all other device types unsupported in this version of OpenDCRE).
+    - power (**Note**:  all other device types unsupported in this version of OpenDCRE).
 
 - ``board_id`` : Hexadecimal string representation of 4-byte integer value - range 00000000..FFFFFFFF.  Upper 3 bytes of ``board_id`` are reserved for future use in OpenDCRE v1.1.  IPMI Bridge board has a special ``board_id`` of 40000000.  IPMI BMC asset information is readable, but not writeable.
 
@@ -363,37 +400,42 @@ Parameters
 
 Request Example
 ---------------
+::
 
-- ``http://opendcre:5000/opendcre/1.1/write/power/00000001/01FF/info/192.100.10.1``
+    http://opendcre:5000/opendcre/1.1/write/power/00000001/01FF/info/192.100.10.1
 
 Response Schema
 ---------------
+
 ::
-	{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-response",
-	  "title": "OpenDCRE Asset Info Response",
-	  "type": "object",
-	  "properties": {
-	    "board_id": {
-	      "type": "string"
-	    },
-	    "device_id: {
-	      "type": "string"
-	    },
-	    "asset_info: {
-	      "type": "string"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-asset-info-response",
+      "title": "OpenDCRE Asset Info Response",
+      "type": "object",
+      "properties": {
+        "board_id": {
+          "type": "string"
+        },
+        "device_id: {
+          "type": "string"
+        },
+        "asset_info: {
+          "type": "string"
+        }
+      }
+    }
 
 Example Response
 ----------------
+
 ::
-	{
-	  "board_id": "00000001",
-	  "device_id": "01FF",
-	  "asset_info": "example asset information"
-	}
+
+    {
+      "board_id": "00000001",
+      "device_id": "01FF",
+      "asset_info": "example asset information"
+    }
 
 Errors
 ------
@@ -423,8 +465,9 @@ Description
 
 Request Format
 --------------
+::
 
-- ``http://<ipaddress>:<port>/opendcre/<version>/power/<command>/<board_id>/<device_id>``
+    http://<ipaddress>:<port>/opendcre/<version>/power/<command>/<board_id>/<device_id>
 
 Parameters
 ----------
@@ -443,57 +486,62 @@ For all commands, power status is returned as the command's response.
 
 Request Example
 ---------------
+::
 
-- ``http://opendcre:5000/opendcre/1.1/power/on/00000001/01ff``
+    http://opendcre:5000/opendcre/1.1/power/on/00000001/01ff
 
 Response Schema
 ---------------
+
 ::
-	{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-power-status",
-	  "title": "OpenDCRE Power Status",
-	  "type": "object",
-	  "properties": {
-	    "input_power": {
-	      "type": "number"
-	    },
-	    "input_voltage": {
-	      "type": "number"
-	    },
-	    "output_current": {
-	      "type": "number"
-	    },
-	    "over_current": {
-	      "type": "boolean"
-	    },
-	    "pmbus_raw": {
-	      "type": "string"
-	    },
-	    "power_ok": {
-	      "type": "boolean"
-	    },
-	    "power_status": {
-	      "type": "string"
-	    },
-	    "under_voltage": {
-	      "type": "boolean"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-power-status",
+      "title": "OpenDCRE Power Status",
+      "type": "object",
+      "properties": {
+        "input_power": {
+          "type": "number"
+        },
+        "input_voltage": {
+          "type": "number"
+        },
+        "output_current": {
+          "type": "number"
+        },
+        "over_current": {
+          "type": "boolean"
+        },
+        "pmbus_raw": {
+          "type": "string"
+        },
+        "power_ok": {
+          "type": "boolean"
+        },
+        "power_status": {
+          "type": "string"
+        },
+        "under_voltage": {
+          "type": "boolean"
+        }
+      }
+    }
 
 Example Response
 ----------------
+
 ::
-	{
-	  "input_power": 0.0, 
-	  "input_voltage": 0.0, 
-	  "output_current": -25.70631970260223, 
-	  "over_current": false, 
-	  "pmbus_raw": "0,0,0,0", 
-	  "power_ok": true, 
-	  "power_status": "on", 
-	  "under_voltage": false
-	}
+
+    {
+      "input_power": 0.0, 
+      "input_voltage": 0.0, 
+      "output_current": -25.70631970260223, 
+      "over_current": false, 
+      "pmbus_raw": "0,0,0,0", 
+      "power_ok": true, 
+      "power_status": "on", 
+      "under_voltage": false
+    }
 
 Errors
 ------
@@ -510,30 +558,35 @@ Description
 
 Request Format
 --------------
+::
 
-- ``http://<ipaddress>:<port>/opendcre/<version>/test``
+   http://<ipaddress>:<port>/opendcre/<version>/test
 
 Response Schema
 ---------------
+
 ::
-	{
-	  "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-test-status",
-	  "title": "OpenDCRE Test Status",
-	  "type": "object",
-	  "properties": {
-	    "status": {
-	      "type": "string"
-	    }
-	  }
-	}
+
+    {
+      "$schema": "http://schemas.vapor.io/opendcre/v1.1/opendcre-1.1-test-status",
+      "title": "OpenDCRE Test Status",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    }
 
 Example Response
+
 ::
-	{
-	  "status": "ok" 
-	}
+
+    {
+      "status": "ok" 
+    }
 
 Errors
 ------
 
--If the endpoint is not running no response will be returned, as the command will always return the response above while the endpoint is functional.
+- If the endpoint is not running no response will be returned, as the command will always return the response above while the endpoint is functional.

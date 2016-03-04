@@ -7,7 +7,15 @@ A lightweight OpenDCRE demo is included with the OpenMistOS image and can be run
 Getting the Demo
 ----------------
 
-The demo site can be downloaded as a standalone image from [https://hub.docker.com/r/vaporio/opendcre-demo/ DockerHub], or the demo source can be download from [https://github.com/vapor-ware/opendcre-demo GitHub].
+The demo site can be downloaded as a standalone image from `DockerHub`__, or the demo source can be download from `GitHub`__.
+
+.. _DockerHub: https://hub.docker.com/r/vaporio/opendcre-demo
+
+__ DockerHub_
+
+.. _GitHub: https://github.com/vapor-ware/opendcre-demo
+
+__ GitHub_
 
 From DockerHub:
 ::
